@@ -21,7 +21,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
         },
         {
           test: /\.(css|scss)$/,
-          use: ['style-loader', 'css-loader'],
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
           exclude: /node_modules/,
         },
         {
@@ -38,7 +38,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
     ],
     resolve: {
       plugins: [new TsconfigPathsPlugin()],
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs'],
     },
     output: {
       filename: 'bundle.js',
@@ -50,7 +50,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
       },
       historyApiFallback: true,
       port: 8888,
-      open: false,
+      open: true,
     },
   };
 }

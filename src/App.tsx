@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <img src={Logo} alt="" />
-      <h1>Hello React TS</h1>
+      <h1 className="text-3xl font-bold underline">Hello React TS</h1>
       <div>
         webpack, babel, typescript
       </div>
