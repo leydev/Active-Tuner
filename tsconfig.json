@@ -1,32 +1,22 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "es2019",
-      "ES2015",
-      "ESNext"
-    ],
-    "target": "es6",
-    "outDir": "dist",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "jsx": "react-jsx",
-    "rootDir": "/",
-    "baseUrl": "./src",
-    "noImplicitAny": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"lib": ["dom", "es2019", "ES2015", "ESNext"],
+		"target": "es6",
+		"outDir": "dist",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"jsx": "react-jsx",
+		"rootDir": "./",
+		"baseUrl": "./src",
+		"noImplicitAny": true,
+		"paths": {
+			"@/*": ["./*"]
+		}
+	},
+	"exclude": ["node_modules", "dist"]
 }
