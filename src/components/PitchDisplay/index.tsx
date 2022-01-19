@@ -1,49 +1,16 @@
 import {
-  PropsWithChildren, useRef, useEffect,
+  PropsWithChildren,
 } from 'react';
 
-import useRender from '@/hooks/useRender';
-
-export interface PitchDisplayProps {
-  bufferLength: number;
-  buffer: Uint8Array;
-  update: () => void;
-  text: string,
+interface PitchDisplayProps {
+  id: string;
 }
 
-export function PitchDisplay(props: PropsWithChildren<PitchDisplayProps>) {
-  const {
-    buffer, bufferLength, update, text,
-  } = props;
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const {
-    setBuffer, setBufferLength, setText, setCanvas, setUpdate,
-  } = useRender({ bufferLength: 2048, autoinit: true });
-
-  useEffect(() => {
-    setBufferLength(bufferLength);
-    setBuffer(buffer);
-    setText(text);
-    setUpdate(update);
-  }, [
-    buffer,
-    bufferLength,
-    setBuffer,
-    setBufferLength,
-    setText,
-    update,
-    setUpdate,
-    text,
-  ]);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      setCanvas(canvasRef.current);
-    }
-  }, [setCanvas]);
-
+export function PitchDisplay({ children, id }: PropsWithChildren<PitchDisplayProps>) {
   return (
-    <canvas ref={canvasRef} />
+    <canvas id={id}>
+      {children}
+    </canvas>
   );
 }
 
