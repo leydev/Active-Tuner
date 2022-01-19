@@ -3,6 +3,9 @@
  * Here you can declare the types of libs third-party
  */
 declare global {
+
+  type FunctionVoid = () => void;
+
   namespace Render2D {
     interface Wave {
       color: string,
@@ -23,7 +26,7 @@ declare global {
       text?: Text;
     }
 
-    type CallbackFrame = () => void;
+    type CallbackFrame = FunctionVoid;
   }
 }
 
