@@ -8,3 +8,24 @@
   align-items: center;
   padding: 17px !important;
 }
+
+.list > li{
+  border-bottom: 1px solid #BFBFBF;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.list > li:last-child{
+  border-bottom: none;
+}
+
+.list > li.active::before {
+  content: '';
+  position: absolute;
+  background-color: #20CC31;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  left: 10px;
+}
