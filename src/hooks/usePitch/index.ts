@@ -8,11 +8,6 @@ export interface Note {
   frequency: number
 }
 
-interface PairNotes {
-  first: Note,
-  second: Note
-}
-
 export interface NoteResult {
   /** A object contain name and frequency note */
   note: Note,
@@ -35,56 +30,52 @@ function usePitch() {
 
   const getNote = useCallback((hertz: number): NoteResult => {
     const notes: Array<Note> = notesFile;
-    let pairNotes: PairNotes;
+    let currentNoteIndex = -1;
 
-    notes.forEach((note, index) => {
-      const currentFrequency: number = note.frequency;
-      const nextIndex: number = index + 1;
-      let nextFrequency: number;
+    for (let i = 0; i < notes.length; i += 1) {
+      const currentFrequency: number = notes[i].frequency;
 
-      if ((nextIndex) <= (notes.length - 1)) nextFrequency = notes[nextIndex].frequency;
-
-      if (hertz >= currentFrequency && hertz <= nextFrequency) {
-        pairNotes = {
-          first: note,
-          second: notes[nextIndex],
-        };
+      if (hertz <= currentFrequency) {
+        currentNoteIndex = i;
+        break;
       }
-    });
+    }
 
-    if (pairNotes) {
-      const { first, second } = pairNotes;
-      const A = first.frequency;
-      const B = second.frequency;
-      const X = hertz;
-
-      const AY = Math.abs(A - X);
-      const BY = Math.abs(B - X);
-
+    if (currentNoteIndex === 0) {
       return {
-        note: (AY < BY) ? first : second,
+        note: notes[0],
         range: {
-          out: false,
-          at: 0,
+          out: true,
+          at: -1,
         },
-        accuracy: (AY < BY) ? AY : BY,
+        accuracy: Math.abs(notes[0].frequency - hertz),
       };
     }
 
-    const A = notes[0];
-    const B = notes[notes.length - 1];
-    const X = hertz;
+    if (currentNoteIndex === -1) {
+      return {
+        note: notes[notes.length - 1],
+        range: {
+          out: true,
+          at: 1,
+        },
+        accuracy: Math.abs(notes[notes.length - 1].frequency - hertz),
+      };
+    }
 
-    const AY = Math.abs(A.frequency - X);
-    const BY = Math.abs(B.frequency - X);
+    const prevNote = notes[currentNoteIndex - 1];
+    const nextNote = notes[currentNoteIndex];
+
+    const prevDelta = Math.abs(prevNote.frequency - hertz);
+    const nextDelta = Math.abs(nextNote.frequency - hertz);
 
     return {
-      note: (hertz < A.frequency) ? A : B,
+      note: (prevDelta < nextDelta) ? prevNote : nextNote,
       range: {
-        out: true,
-        at: (hertz < A.frequency) ? -1 : 1,
+        out: false,
+        at: 0,
       },
-      accuracy: (AY < BY) ? AY : BY,
+      accuracy: (prevDelta < nextDelta) ? prevDelta : nextDelta,
     };
   }, []);
 
