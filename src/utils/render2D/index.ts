@@ -90,7 +90,6 @@ function render2D(config: Render2D.Parameters) {
       buffer = data;
     },
     setCanvas(ref: HTMLCanvasElement) {
-      console.log(ref);
       canvas = ref;
       context = canvas.getContext('2d', {
         alpha: true,
