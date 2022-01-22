@@ -14,8 +14,9 @@ declare global {
 
     interface Text {
       font: string;
-      align: CanvasTextAlign,
-      value: string,
+      align: CanvasTextAlign;
+      value: string;
+      color: string;
     }
 
     interface Parameters {
