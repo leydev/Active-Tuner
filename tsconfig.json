@@ -9,6 +9,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
 		"sourceMap": true,
 		"jsx": "react-jsx",
 		"rootDir": "./",

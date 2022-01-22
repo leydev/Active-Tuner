@@ -33,6 +33,7 @@
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "react/button-has-type": "off",
-    "eol-last": 2
+    "eol-last": 2,
+    "react/default-props-match-prop-types": "off"
   }
 }
