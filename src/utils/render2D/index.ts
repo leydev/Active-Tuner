@@ -7,31 +7,29 @@ function drawBackground(
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawForeBackground(
-  context: CanvasRenderingContext2D,
-  canvas: HTMLCanvasElement,
-  text: string,
-) {
-  const textWidth = context.measureText(text).width + 30;
-  const textHeight = 50;
-  const textBackground = {
-    x: (canvas.width / 2) - (textWidth / 2),
-    y: (canvas.height / 2) - (textHeight / 2),
-  };
-  context.fillStyle = 'rgba(30, 30, 30, 0.5)';
-  context.fillRect(textBackground.x, textBackground.y, textWidth, textHeight);
-}
-
 function drawText(
   context: CanvasRenderingContext2D,
   config: Render2D.Parameters,
   canvas: HTMLCanvasElement,
   text: string,
+  textColor: string,
 ) {
-  context.font = config.text ? config.text.font : '30px Arial';
+  context.font = config.text ? config.text.font : '50px Arial';
   context.textAlign = config.text ? config.text.align : 'center';
-  context.fillStyle = 'rgb(255,255,255)';
-  context.fillText(text, canvas.width / 2, (canvas.height / 2) + 8);
+  context.fillStyle = textColor;
+  context.fillText(text, (canvas.width / 2), (canvas.height / 2) + 40);
+}
+
+function drawHertz(
+  context: CanvasRenderingContext2D,
+  config: Render2D.Parameters,
+  canvas: HTMLCanvasElement,
+  text: string,
+) {
+  context.font = '30px Rubik';
+  context.textAlign = config.text ? config.text.align : 'center';
+  context.fillStyle = config.text ? config.text.color : 'rgb(255,255,255)';
+  context.fillText(`${text} Hz`, (canvas.width / 2), (canvas.height / 2) + 130);
 }
 
 function drawLine(
@@ -41,7 +39,7 @@ function drawLine(
   bufferLength: number,
   buffer: Uint8Array,
 ) {
-  context.lineWidth = config.wave ? config.wave.width : 2;
+  context.lineWidth = config.wave ? config.wave.width : 4;
   context.strokeStyle = config.wave ? config.wave.color : '#20dd35';
 
   context.beginPath();
@@ -68,10 +66,12 @@ function drawLine(
 
 function render2D(config: Render2D.Parameters) {
   const bufferLength: number = config.bufferLength || 0;
+  let textColor = '#000';
   let buffer: Uint8Array = new Uint8Array(config.bufferLength);
   let context: CanvasRenderingContext2D;
   let canvas: HTMLCanvasElement;
   let text: string;
+  let hertz: string;
   let callbackFrame: Render2D.CallbackFrame = () => {};
 
   const draw = () => {
@@ -81,8 +81,8 @@ function render2D(config: Render2D.Parameters) {
 
     drawBackground(context, config, canvas);
     drawLine(context, config, canvas, bufferLength, buffer);
-    drawForeBackground(context, canvas, text);
-    drawText(context, config, canvas, text);
+    drawText(context, config, canvas, text, textColor);
+    drawHertz(context, config, canvas, hertz);
   };
 
   return {
@@ -100,6 +100,12 @@ function render2D(config: Render2D.Parameters) {
     },
     setText(value: string) {
       text = value;
+    },
+    setTextColor(value: string) {
+      textColor = value;
+    },
+    setHertz(value: string) {
+      hertz = value;
     },
     draw,
   };
