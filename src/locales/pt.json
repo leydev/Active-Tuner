@@ -2,7 +2,7 @@
   "dialog": {
     "permissions": {
       "title": "Permissões",
-      "text": "Para continuar precisamos de acesso ao seu microfone, tudo bem ?"
+      "text": "Para continuar precisaremos acessar seu microfone, tudo bem ?"
     },
     "denied": {
       "title": "Ops!",
