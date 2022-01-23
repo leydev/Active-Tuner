@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { marked } from 'marked';
 
@@ -20,9 +20,9 @@ import '@/app.scss';
 
 function App() {
   const { t } = useTranslation();
-  const [dialogPermissions, setDialogPermissions] = useState<boolean>(false);
+  const [dialogPermissions, setDialogPermissions] = useState<boolean>(true);
   const [dialogDenied, setDialogDenied] = useState<boolean>(false);
-  const [dialogAbout, setDialogAbout] = useState<boolean>(true);
+  const [dialogAbout, setDialogAbout] = useState<boolean>(false);
   const [waitingPermissions, setWaitingPermissions] = useState<boolean>(false);
   const [dialogMic, setDialogMic] = useState<boolean>(false);
   const [dialogError, setDialogError] = useState<boolean>(false);
@@ -128,6 +128,12 @@ function App() {
     }
 
     window.open('https://www.google.com/search?q=how+to+reset+permission+browser', '_blank');
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDialogAbout(true);
+    }, 1000 * 60 * 2);
   }, []);
 
   return (
