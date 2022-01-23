@@ -1,5 +1,7 @@
+/* eslint-disable react/no-danger */
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { marked } from 'marked';
 
 import { PitchDisplay } from '@/components/PitchDisplay';
 import { Dialog, DialogContent, DialogActions } from '@/components/Dialog';
@@ -8,15 +10,19 @@ import { Button } from '@/components/Button';
 import useAudio from '@/hooks/useAudio';
 import render2D from '@/utils/render2D';
 
-import '@/app.scss';
 import usePitch, { NoteResult } from '@/hooks/usePitch';
 import { Microphone as IconMicrophone } from '@/components/icons/Microphone';
+import { MicrophoneMute as IconMicrophoneMute } from '@/components/icons/MicrophoneMute';
+import { Info as IconInfo } from '@/components/icons/Info';
 import Ellipsis from './components/loader/Ellipsis';
+
+import '@/app.scss';
 
 function App() {
   const { t } = useTranslation();
-  const [dialogPermissions, setDialogPermissions] = useState<boolean>(true);
+  const [dialogPermissions, setDialogPermissions] = useState<boolean>(false);
   const [dialogDenied, setDialogDenied] = useState<boolean>(false);
+  const [dialogAbout, setDialogAbout] = useState<boolean>(true);
   const [waitingPermissions, setWaitingPermissions] = useState<boolean>(false);
   const [dialogMic, setDialogMic] = useState<boolean>(false);
   const [dialogError, setDialogError] = useState<boolean>(false);
@@ -132,7 +138,7 @@ function App() {
           <Button type="button" icon color="#26E4B7" onClick={() => setDialogMic((sta) => !sta)}>
             <IconMicrophone />
           </Button>
-          <div>
+          <div className="mt-4">
             <p>
               {getCurrentMicName()}
             </p>
@@ -161,6 +167,9 @@ function App() {
           <p>
             {t('dialog.permissions.text')}
           </p>
+          <div className="flex justify-center mt-4">
+            <IconMicrophone />
+          </div>
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button disabled={waitingPermissions} type="button" color="#26CDE4" colorText="white" onClick={getPermissions}>
@@ -173,6 +182,9 @@ function App() {
           <p>
             {t('dialog.denied.text')}
           </p>
+          <div className="flex justify-center mt-4">
+            <IconMicrophoneMute color="#E25A5A" />
+          </div>
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button type="button" color="#26CDE4" colorText="white" onClick={getHelpPermissions}>
@@ -192,6 +204,21 @@ function App() {
           </Button>
         </DialogActions>
       </Dialog>
+      <Dialog title="Sobre" open={dialogAbout}>
+        <DialogContent>
+          <div className="about" dangerouslySetInnerHTML={{ __html: marked.parse(t('about')) }} />
+        </DialogContent>
+        <DialogActions justifyContent="center">
+          <Button type="button" color="#26CDE4" colorText="white" onClick={() => setDialogAbout(false)}>
+            Fechar
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <div className="fixed top-4 right-4">
+        <Button type="button" icon onClick={() => setDialogAbout(true)}>
+          <IconInfo color="#818181" />
+        </Button>
+      </div>
     </div>
   );
 }
