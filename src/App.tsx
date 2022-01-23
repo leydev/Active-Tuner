@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PitchDisplay } from '@/components/PitchDisplay';
 import { Dialog, DialogContent, DialogActions } from '@/components/Dialog';
@@ -6,7 +7,6 @@ import { List, ItemButton } from '@/components/List';
 import { Button } from '@/components/Button';
 import useAudio from '@/hooks/useAudio';
 import render2D from '@/utils/render2D';
-import microphoneName from '@/utils/microphoneName';
 
 import '@/app.scss';
 import usePitch, { NoteResult } from '@/hooks/usePitch';
@@ -14,6 +14,7 @@ import { Microphone as IconMicrophone } from '@/components/icons/Microphone';
 import Ellipsis from './components/loader/Ellipsis';
 
 function App() {
+  const { t } = useTranslation();
   const [dialogPermissions, setDialogPermissions] = useState<boolean>(true);
   const [dialogDenied, setDialogDenied] = useState<boolean>(false);
   const [waitingPermissions, setWaitingPermissions] = useState<boolean>(false);
@@ -23,7 +24,7 @@ function App() {
   const pitch = usePitch();
   const {
     createStream, getDevices, getByteTimeDomain, getFloatTimeDomain,
-    destroyStream, resume, deviceSettings, sampleRate,
+    destroyStream, resume, deviceSettings, sampleRate, microphoneName,
   } = useAudio();
   const [render] = useState(render2D({
     bufferLength: 1024,
@@ -138,7 +139,7 @@ function App() {
           </div>
         </div>
       </div>
-      <Dialog title="Microphones" open={dialogMic}>
+      <Dialog title={t('dialog.microphones.title')} open={dialogMic}>
         <DialogContent>
           <List>
             {devicesMic.map((microphone: MediaDeviceInfo) => (
@@ -155,10 +156,10 @@ function App() {
           </List>
         </DialogContent>
       </Dialog>
-      <Dialog title="Permissões" open={dialogPermissions}>
+      <Dialog title={t('dialog.permissions.title')} open={dialogPermissions}>
         <DialogContent>
           <p>
-            Para continuar precisamos de acesso ao seu microfone, tudo bem ?
+            {t('dialog.permissions.text')}
           </p>
         </DialogContent>
         <DialogActions justifyContent="center">
@@ -167,11 +168,10 @@ function App() {
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog title="Ops!" open={dialogDenied}>
+      <Dialog title={t('dialog.denied.title')} open={dialogDenied}>
         <DialogContent>
           <p>
-            Não tenho permissão para usar seu microfone. Por favor,
-            libere nas configurações do seu navegador.
+            {t('dialog.denied.text')}
           </p>
         </DialogContent>
         <DialogActions justifyContent="center">
@@ -180,10 +180,10 @@ function App() {
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog title="Ops!" open={dialogError}>
+      <Dialog title={t('dialog.error.title')} open={dialogError}>
         <DialogContent>
           <p>
-            Ocorreu um erro inesperado. Por favor, saia e entre novamente.
+            {t('dialog.error.text')}
           </p>
         </DialogContent>
         <DialogActions justifyContent="center">

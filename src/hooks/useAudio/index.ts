@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import getDevices from './getDevices';
 import getStream from './getStream';
 
 function useAudio(contextOptions?: AudioContextOptions) {
+  const { t } = useTranslation();
   const [audioContext] = useState<AudioContext>(new AudioContext(contextOptions));
   const [analyzerNode] = useState<AnalyserNode>(audioContext.createAnalyser());
   const [deviceSettings, setDeviceSettings] = useState<MediaTrackSettings>({});
@@ -46,6 +49,18 @@ function useAudio(contextOptions?: AudioContextOptions) {
     });
   }, [analyzerNode, audioContext]);
 
+  const microphoneName = useCallback((microphone: MediaDeviceInfo): string => {
+    if (/default/i.test(microphone.deviceId)) {
+      return t('hook.useAudio.microphone-defualt');
+    }
+
+    if (!microphone.label) {
+      return t('hook.useAudio.microphone-name', { name: microphone.deviceId.slice(-5) });
+    }
+
+    return microphone.label;
+  }, [t]);
+
   useEffect(() => {
     analyzerNode.fftSize = 2048;
   }, [analyzerNode, audioContext]);
@@ -61,6 +76,7 @@ function useAudio(contextOptions?: AudioContextOptions) {
     deviceSettings,
     destroyStream,
     sampleRate: audioContext.sampleRate,
+    microphoneName,
   };
 }
 
