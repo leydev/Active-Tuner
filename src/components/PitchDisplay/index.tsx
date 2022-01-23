@@ -1,17 +1,34 @@
 import {
-  PropsWithChildren,
+  PropsWithChildren, useEffect, useRef,
 } from 'react';
 
 interface PitchDisplayProps {
-  id: string;
+  onLoaded: (ref: HTMLCanvasElement) => void,
+  style?: React.CSSProperties
 }
 
-export function PitchDisplay({ children, id }: PropsWithChildren<PitchDisplayProps>) {
+export function PitchDisplay(props: PropsWithChildren<PitchDisplayProps>) {
+  const { children, onLoaded, style } = props;
+  const canvasRef = useRef<HTMLCanvasElement>();
+
+  useEffect(() => {
+    if (canvasRef) onLoaded(canvasRef.current);
+  }, [canvasRef, onLoaded]);
+
   return (
-    <canvas id={id}>
+    <canvas
+      ref={canvasRef}
+      width={window.innerWidth < window.innerHeight ? window.innerHeight : window.innerWidth}
+      height="350"
+      style={style}
+    >
       {children}
     </canvas>
   );
 }
+
+PitchDisplay.defaultProps = {
+  style: {},
+};
 
 export default PitchDisplay;
