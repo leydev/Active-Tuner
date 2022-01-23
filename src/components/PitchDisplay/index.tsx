@@ -1,5 +1,5 @@
 import {
-  PropsWithChildren, useEffect, useRef, useState,
+  PropsWithChildren, useEffect, useRef,
 } from 'react';
 
 interface PitchDisplayProps {
