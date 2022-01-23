@@ -40,7 +40,6 @@ function useAudio(contextOptions?: AudioContextOptions) {
           setStreamAudioSource(streamSource);
           setDeviceSettings(streamSource.mediaStream.getAudioTracks()[0].getSettings());
           streamSource.connect(analyzerNode);
-          analyzerNode.connect(audioContext.destination);
           resolve(undefined);
         })
         .catch((error) => reject(error));
@@ -61,6 +60,7 @@ function useAudio(contextOptions?: AudioContextOptions) {
     status: audioContext.state,
     deviceSettings,
     destroyStream,
+    sampleRate: audioContext.sampleRate,
   };
 }
 
