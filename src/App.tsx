@@ -61,7 +61,7 @@ function App() {
       });
   }, [createStream, getByteTimeDomain, render, sampleRate, getFloatTimeDomain, pitch]);
 
-  const chnageMicrophone = useCallback((deviceId: string) => {
+  const changeMicrophone = useCallback((deviceId: string) => {
     setDialogMic(false);
     destroyStream();
     initialize({ deviceId });
@@ -144,7 +144,7 @@ function App() {
             {devicesMic.map((microphone: MediaDeviceInfo) => (
               <ItemButton
                 key={microphone.deviceId}
-                onClick={() => chnageMicrophone(microphone.deviceId)}
+                onClick={() => changeMicrophone(microphone.deviceId)}
                 active={microphone.deviceId === deviceSettings.deviceId}
               >
                 <span className="text-sm">
