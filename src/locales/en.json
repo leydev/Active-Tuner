@@ -1,0 +1,26 @@
+{
+  "a": "jkdhfjkdf",
+  "dialog": {
+    "permissions": {
+      "title": "Permissions",
+      "text": "Can we access your microphone?"
+    },
+    "denied": {
+      "title": "Ops!",
+      "text": "We can't access your microphone right now. Please go to your browser setting to allow it."
+    },
+    "error": {
+      "title": "Ops!",
+      "text": "Unxpected error, Please get out and come again."
+    },
+    "microphones": {
+      "title": "Microphones"
+    }
+  },
+  "hook": {
+    "useAudio": {
+      "microphone-defualt": "Microphone of system",
+      "microphone-name": "Microphone {{name}}"
+    }
+  }
+}

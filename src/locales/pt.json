@@ -1,0 +1,25 @@
+{
+  "dialog": {
+    "permissions": {
+      "title": "Permissões",
+      "text": "Para continuar precisamos de acesso ao seu microfone, tudo bem ?"
+    },
+    "denied": {
+      "title": "Ops!",
+      "text": "Não tenho permissão para usar seu microfone. Por favor, libere nas configurações do seu navegador."
+    },
+    "error": {
+      "title": "Ops!",
+      "text": "Ocorreu um erro inesperado. Por favor, saia e entre novamente."
+    },
+    "microphones": {
+      "title": "Microfones"
+    }
+  },
+  "hook": {
+    "useAudio": {
+      "microphone-defualt": "Microfone do sistema",
+      "microphone-name": "Microfone {{name}}"
+    }
+  }
+}
