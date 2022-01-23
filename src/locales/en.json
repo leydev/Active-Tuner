@@ -6,7 +6,7 @@
     },
     "denied": {
       "title": "Ops!",
-      "text": "We can't access your microphone right now. Please go to your browser setting to allow it."
+      "text": "We can't access your microphone right now. Please go to your browser settings to allow it."
     },
     "error": {
       "title": "Ops!",
