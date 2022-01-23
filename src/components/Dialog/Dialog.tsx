@@ -11,7 +11,7 @@ export function Dialog(props: PropsWithChildren<DialogProps>) {
   const { title, children, open } = props;
   return (
     <div
-      className="fixed w-screen h-screen top-0 flex justify-center items-center"
+      className="fixed w-screen h-screen top-0 flex justify-center items-center px-4"
       style={{
         visibility: open ? 'visible' : 'hidden',
         backgroundColor: 'rgba(0,0,0,0.1)',
