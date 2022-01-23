@@ -51,7 +51,7 @@ function useAudio(contextOptions?: AudioContextOptions) {
 
   const microphoneName = useCallback((microphone: MediaDeviceInfo): string => {
     if (/default/i.test(microphone.deviceId)) {
-      return t('hook.useAudio.microphone-defualt');
+      return t('hook.useAudio.microphone-default');
     }
 
     if (!microphone.label) {

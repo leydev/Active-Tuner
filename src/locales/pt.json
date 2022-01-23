@@ -18,7 +18,7 @@
   },
   "hook": {
     "useAudio": {
-      "microphone-defualt": "Microfone do sistema",
+      "microphone-default": "Microfone do sistema",
       "microphone-name": "Microfone {{name}}"
     }
   }
