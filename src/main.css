@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 @font-face { 
-  font-family: roboto-regular; 
+  font-family: roboto; 
   src: url('./assets/fonts/Roboto/Roboto-Regular.ttf'); 
 } 
 
+* {
+  font-family: roboto !important;
+}

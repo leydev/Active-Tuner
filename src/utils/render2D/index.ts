@@ -30,7 +30,7 @@ function drawHertz(
   canvas: HTMLCanvasElement,
   text: string,
 ) {
-  context.font = '30px Rubik';
+  context.font = '30px roboto';
   context.textAlign = config.text ? config.text.align : 'center';
   context.fillStyle = config.text ? config.text.color : 'rgb(255,255,255)';
   context.fillText(`${defaultText(text)} Hz`, (canvas.width / 2), (canvas.height / 2) + 130);

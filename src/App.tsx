@@ -37,7 +37,7 @@ function App() {
     bufferLength: 1024,
     text: {
       align: 'center',
-      font: 'bold 120px Rubik',
+      font: 'bold 120px roboto',
       value: 'E₇',
       color: '#000',
     },
