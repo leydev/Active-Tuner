@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"esModuleInterop": true,
-		"lib": ["dom", "es2019", "ES2015", "ESNext"],
+		"lib": ["dom", "es2019", "ES2015", "ESNext", "WebWorker"],
 		"target": "es6",
 		"outDir": "dist",
 		"module": "CommonJS",

@@ -29,6 +29,7 @@ declare global {
 
     type CallbackFrame = FunctionVoid;
   }
+
 }
 
 export { };
