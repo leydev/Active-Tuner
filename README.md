@@ -4,7 +4,7 @@
 # Active Tuner 
 <sup>Versão: 1.0.0</sup>
 
-![alt text](src/assets/screenshots/desktop.png "Title")
+![alt text](src/assets/screenshots/desktop.png "Screenshot app for desktop")
 
 Analyser of sound waves, to aid in the tuning of musical instruments. It detects frequencies between C₀ (16,35 Hertz) and B₈  (7902,13 Hertz), and shows a musical note  that matches the recognized frequency.
 
