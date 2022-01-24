@@ -14,6 +14,7 @@ import usePitch, { NoteResult } from '@/hooks/usePitch';
 import { Microphone as IconMicrophone } from '@/components/icons/Microphone';
 import { MicrophoneMute as IconMicrophoneMute } from '@/components/icons/MicrophoneMute';
 import { Info as IconInfo } from '@/components/icons/Info';
+import { Github as IconGithub } from '@/components/icons/Github';
 import Ellipsis from './components/loader/Ellipsis';
 
 import '@/app.scss';
@@ -223,6 +224,9 @@ function App() {
       <div className="fixed top-4 right-4">
         <Button type="button" icon onClick={() => setDialogAbout(true)}>
           <IconInfo color="#818181" />
+        </Button>
+        <Button type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
+          <IconGithub color="#818181" />
         </Button>
       </div>
     </div>
