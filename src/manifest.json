@@ -47,12 +47,22 @@
   "theme_color": "#000000",
   "screenshots": [
     {
-      "src": "assets/screenshots/desktop.png",
-      "sizes": "1849x969",
+      "src": "assets/screenshots/mobile-c2.png",
+      "sizes": "432x969",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/mobile-gsus.png",
+      "sizes": "431x968",
       "type": "image/png"
     },
     {
       "src": "assets/screenshots/mobile.png",
+      "sizes": "435x971",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/mobile-c.png",
       "sizes": "435x971",
       "type": "image/png"
     }
