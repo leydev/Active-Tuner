@@ -180,7 +180,7 @@ function App() {
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button disabled={waitingPermissions} type="button" color="#26CDE4" onClick={getPermissions}>
-            {waitingPermissions ? <Ellipsis /> : 'Ok'}
+            {waitingPermissions ? <Ellipsis /> : t('buttons.okay')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -195,7 +195,7 @@ function App() {
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button type="button" color="#26CDE4" onClick={getHelpPermissions}>
-            Obter ajuda
+            {t('buttons.get-help')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -207,7 +207,7 @@ function App() {
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button type="button" color="#26CDE4" onClick={() => window.location.reload()}>
-            Sair
+            {t('buttons.exit')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -217,7 +217,7 @@ function App() {
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button type="button" color="#26CDE4" onClick={() => setDialogAbout(false)}>
-            Fechar
+            {t('buttons.close')}
           </Button>
         </DialogActions>
       </Dialog>
