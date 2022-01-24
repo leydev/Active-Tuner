@@ -1,4 +1,4 @@
-import { PropsWithChildren, MouseEventHandler } from 'react';
+import type { PropsWithChildren, MouseEventHandler } from 'react';
 
 export interface ButtonProps {
   /** The button type. Ex: 'submit' | 'reset' | 'button'  */

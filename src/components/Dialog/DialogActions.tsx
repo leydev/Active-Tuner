@@ -1,4 +1,4 @@
-import { PropsWithChildren, CSSProperties } from 'react';
+import type { PropsWithChildren, CSSProperties } from 'react';
 
 export interface DialogActionsProps {
   justifyContent?: CSSProperties['justifyContent']

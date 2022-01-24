@@ -1,4 +1,5 @@
-import { PropsWithChildren, useCallback, MouseEvent } from 'react';
+import type { PropsWithChildren, MouseEvent } from 'react';
+import { useCallback } from 'react';
 
 export interface ItemButtonProps {
   onClick: (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void

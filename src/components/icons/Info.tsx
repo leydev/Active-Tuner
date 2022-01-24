@@ -1,4 +1,4 @@
-import { PropsWithChildren, SVGAttributes } from 'react';
+import type { PropsWithChildren, SVGAttributes } from 'react';
 
 export interface InfoProps {
   style?: SVGAttributes<SVGSVGElement>['style'];
