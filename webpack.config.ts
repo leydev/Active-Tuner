@@ -30,6 +30,12 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
           use: [
             'style-loader',
             {
+              loader: 'url-loader',
+              options: {
+                esModule: false,
+              },
+            },
+            {
               loader: MiniCssExtractPlugin.loader,
               options: {
                 esModule: false,
@@ -63,6 +69,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
         // and not allow any straggling "old" SWs to hang around
         clientsClaim: true,
         skipWaiting: true,
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024 * 4,
       }),
     ],
     resolve: {
@@ -84,7 +91,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
     },
     optimization: {
       splitChunks: {
-        chunks: 'all',
+        minSize: { javascript: 20000, 'css/mini-extra': 10000 },
       },
     },
   };

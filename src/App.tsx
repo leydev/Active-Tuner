@@ -142,7 +142,7 @@ function App() {
       <div>
         <PitchDisplay onLoaded={canvasLoaded} style={{ width: '100vw', height: '30vh' }} />
         <div className="flex flex-col items-center mt-24">
-          <Button type="button" icon color="#26E4B7" onClick={() => setDialogMic((sta) => !sta)}>
+          <Button ariaLabel="Microphones" type="button" icon color="#26E4B7" onClick={() => setDialogMic((sta) => !sta)}>
             <IconMicrophone />
           </Button>
           <div className="mt-4">
@@ -179,7 +179,7 @@ function App() {
           </div>
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button disabled={waitingPermissions} type="button" color="#26CDE4" colorText="white" onClick={getPermissions}>
+          <Button disabled={waitingPermissions} type="button" color="#26CDE4" onClick={getPermissions}>
             {waitingPermissions ? <Ellipsis /> : 'Ok'}
           </Button>
         </DialogActions>
@@ -194,7 +194,7 @@ function App() {
           </div>
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button type="button" color="#26CDE4" colorText="white" onClick={getHelpPermissions}>
+          <Button type="button" color="#26CDE4" onClick={getHelpPermissions}>
             Obter ajuda
           </Button>
         </DialogActions>
@@ -206,7 +206,7 @@ function App() {
           </p>
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button type="button" color="#26CDE4" colorText="white" onClick={() => window.location.reload()}>
+          <Button type="button" color="#26CDE4" onClick={() => window.location.reload()}>
             Sair
           </Button>
         </DialogActions>
@@ -216,16 +216,16 @@ function App() {
           <div className="about" dangerouslySetInnerHTML={{ __html: marked.parse(t('about')) }} />
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button type="button" color="#26CDE4" colorText="white" onClick={() => setDialogAbout(false)}>
+          <Button type="button" color="#26CDE4" onClick={() => setDialogAbout(false)}>
             Fechar
           </Button>
         </DialogActions>
       </Dialog>
       <div className="fixed top-4 right-4">
-        <Button type="button" icon onClick={() => setDialogAbout(true)}>
+        <Button ariaLabel="Sobre o app" type="button" icon onClick={() => setDialogAbout(true)}>
           <IconInfo color="#818181" />
         </Button>
-        <Button type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
+        <Button ariaLabel="Github" type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
           <IconGithub color="#818181" />
         </Button>
       </div>

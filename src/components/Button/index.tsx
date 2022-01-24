@@ -12,16 +12,19 @@ export interface ButtonProps {
   /** Event click */
   onClick?: MouseEventHandler<HTMLButtonElement>
   style?: React.HTMLAttributes<HTMLButtonElement>['style'],
-  disabled?: boolean
+  disabled?: boolean,
+  ariaLabel?: React.AriaAttributes['aria-label']
 }
 
 export function Button(props: PropsWithChildren<ButtonProps>) {
   const {
     children, type, color, colorText, icon, onClick, style, disabled,
+    ariaLabel,
   } = props;
 
   return (
     <button
+      aria-label={ariaLabel}
       disabled={disabled}
       onClick={onClick}
       type={type}

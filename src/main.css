@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face { 
+  font-family: roboto-regular; 
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf'); 
+} 
+
