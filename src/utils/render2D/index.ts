@@ -1,3 +1,7 @@
+function defaultText(text: string) {
+  return !text ? '-' : text;
+}
+
 function drawBackground(
   context: CanvasRenderingContext2D,
   config: Render2D.Parameters,
@@ -17,7 +21,7 @@ function drawText(
   context.font = config.text ? config.text.font : '50px Arial';
   context.textAlign = config.text ? config.text.align : 'center';
   context.fillStyle = textColor;
-  context.fillText(text, (canvas.width / 2), (canvas.height / 2) + 40);
+  context.fillText(defaultText(text), (canvas.width / 2), (canvas.height / 2) + 40);
 }
 
 function drawHertz(
@@ -29,8 +33,10 @@ function drawHertz(
   context.font = '30px Rubik';
   context.textAlign = config.text ? config.text.align : 'center';
   context.fillStyle = config.text ? config.text.color : 'rgb(255,255,255)';
-  context.fillText(`${text} Hz`, (canvas.width / 2), (canvas.height / 2) + 130);
+  context.fillText(`${defaultText(text)} Hz`, (canvas.width / 2), (canvas.height / 2) + 130);
 }
+
+let avoidNotAllowedDraw = false;
 
 function drawLine(
   context: CanvasRenderingContext2D,
@@ -39,6 +45,9 @@ function drawLine(
   bufferLength: number,
   buffer: Uint8Array,
 ) {
+  if (!avoidNotAllowedDraw && buffer.every((elem: number) => elem === 0)) return;
+  avoidNotAllowedDraw = true;
+
   context.lineWidth = config.wave ? config.wave.width : 4;
   context.strokeStyle = config.wave ? config.wave.color : '#20dd35';
 

@@ -7,6 +7,16 @@ interface PitchDisplayProps {
   style?: React.CSSProperties
 }
 
+let width = 0;
+let height = 350;
+
+if (window.innerWidth > window.innerHeight) {
+  width = window.innerWidth;
+} else {
+  width = 720;
+  height = width / 1.5;
+}
+
 export function PitchDisplay(props: PropsWithChildren<PitchDisplayProps>) {
   const { children, onLoaded, style } = props;
   const canvasRef = useRef<HTMLCanvasElement>();
@@ -18,8 +28,8 @@ export function PitchDisplay(props: PropsWithChildren<PitchDisplayProps>) {
   return (
     <canvas
       ref={canvasRef}
-      width={window.innerWidth < window.innerHeight ? window.innerHeight : window.innerWidth}
-      height="350"
+      width={width}
+      height={height}
       style={style}
     >
       {children}

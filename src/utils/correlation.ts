@@ -10,7 +10,7 @@ function autoCorrelate(buf: Float32Array, sampleRate: number) {
   rms = Math.sqrt(rms / SIZE);
 
   // not enough signal
-  if (rms < 0.01) return -1;
+  if (rms < 0.01) return 0;
 
   let r1 = 0;
   let r2 = SIZE - 1;
