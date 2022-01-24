@@ -4,6 +4,9 @@
 # Active Tuner 
 <sup>Versão: 1.0.0</sup>
 
+![alt text](src/assets/screenshots/mobile-c2.png "Title")
+![alt text](src/assets/screenshots/mobile-gsus.png "Title")
+
 Analisador de frequências sonoras, para auxílio na afinação de instrumentos musicais. Ele detecta frequências entre C₀ (16,35 Hertz) e B₈  (7902,13 Hertz), e exibe a nota referente a frequência captada.
 
 ## Disclaimer
