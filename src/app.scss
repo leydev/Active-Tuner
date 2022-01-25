@@ -1,0 +1,56 @@
+.icon-button {
+  $size: 45px;
+  min-width: $size !important;
+  min-height: $size !important;
+  border-radius: 100px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px !important;
+}
+
+.list > li {
+  border-bottom: 1px solid #bfbfbf;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.list > li:last-child {
+  border-bottom: none;
+}
+
+.list > li.active::before {
+  content: "";
+  position: absolute;
+  background-color: #20cc31;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  left: 10px;
+}
+
+.about > h1 {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.about > h2 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.about > p {
+  padding: 0 0 .5rem 0;
+}
+
+.about > ul {
+  list-style: disc;
+  list-style-type: disc;
+  padding: 0 0 1rem 2rem;
+}
+
+.about > ul > li > a:link, a:visited  {
+  color: #1212fb;
+}

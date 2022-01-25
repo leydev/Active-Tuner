@@ -3,6 +3,9 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import type { Configuration as ConfigurationWebpack } from 'webpack';
 import type { Configuration as ConfigurationDevServer } from 'webpack-dev-server';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import WorkboxPlugin from 'workbox-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
 interface Configuration extends ConfigurationWebpack {
   devServer?: ConfigurationDevServer
@@ -10,7 +13,10 @@ interface Configuration extends ConfigurationWebpack {
 
 function configuration(_env: unknown, argv: { mode: string }): Configuration {
   return {
-    entry: './src/index.tsx',
+    entry: {
+      index: './src/index.tsx',
+      another: './src/assets/notes.json',
+    },
     devtool: argv.mode === 'production' ? false : 'inline-source-map',
     module: {
       rules: [
@@ -21,7 +27,21 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
         },
         {
           test: /\.(css|scss)$/,
-          use: ['style-loader', 'css-loader'],
+          use: [
+            'style-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                esModule: false,
+              },
+            },
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: false,
+              },
+            },
+            'css-loader', 'sass-loader', 'postcss-loader'],
           exclude: /node_modules/,
         },
         {
@@ -32,16 +52,32 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
       ],
     },
     plugins: [
+      new MiniCssExtractPlugin(),
+      new CopyPlugin({
+        patterns: [
+          { from: 'src/manifest.json', to: 'manifest.json' },
+          { from: 'src/assets/favicon.ico', to: 'favicon.ico' },
+          { from: 'src/assets/icons/*.png', to: 'assets/icons/[name].png' },
+          { from: 'src/assets/screenshots/*.png', to: 'assets/screenshots/[name].png' },
+        ],
+      }),
       new HTMLWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'),
+      }),
+      new WorkboxPlugin.GenerateSW({
+        // these options encourage the ServiceWorkers to get in there fast
+        // and not allow any straggling "old" SWs to hang around
+        clientsClaim: true,
+        skipWaiting: true,
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024 * 4,
       }),
     ],
     resolve: {
       plugins: [new TsconfigPathsPlugin()],
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs', '.scss'],
     },
     output: {
-      filename: 'bundle.js',
+      filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
@@ -50,7 +86,13 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
       },
       historyApiFallback: true,
       port: 8888,
-      open: false,
+      open: true,
+      hot: true,
+    },
+    optimization: {
+      splitChunks: {
+        minSize: { javascript: 20000, 'css/mini-extra': 10000 },
+      },
     },
   };
 }

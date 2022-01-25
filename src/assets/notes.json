@@ -1,0 +1,434 @@
+[
+	{
+		"name": "C₀", 
+		"frequency": 16.35
+	},
+	{
+		"name": "C#₀/Db₀", 
+		"frequency": 17.32
+	},
+	{
+		"name": "D₀", 
+		"frequency": 18.35
+	},
+	{
+		"name": "D#₀/Eb₀", 
+		"frequency": 19.45
+	},
+	{
+		"name": "E₀", 
+		"frequency": 20.60
+	},
+	{
+		"name": "F₀", 
+		"frequency": 21.83
+	},
+	{
+		"name": "F#₀/Gb₀", 
+		"frequency": 23.12
+	},
+	{
+		"name": "G₀", 
+		"frequency": 24.50
+	},
+	{
+		"name": "G#₀/Ab₀", 
+		"frequency": 25.96
+	},
+	{
+		"name": "A₀", 
+		"frequency": 27.50
+	},
+	{
+		"name": "A#₀/Bb₀", 
+		"frequency": 29.14
+	},
+	{
+		"name": "B₀", 
+		"frequency": 30.87
+	},
+	{
+		"name": "C₁", 
+		"frequency": 32.70
+	},
+	{
+		"name": "C#₁/Db₁", 
+		"frequency": 34.65
+	},
+	{
+		"name": "D₁", 
+		"frequency": 36.71
+	},
+	{
+		"name": "D#₁/Eb₁", 
+		"frequency": 38.89
+	},
+	{
+		"name": "E₁", 
+		"frequency": 41.20
+	},
+	{
+		"name": "F₁", 
+		"frequency": 43.65
+	},
+	{
+		"name": "F#₁/Gb₁", 
+		"frequency": 46.25
+	},
+	{
+		"name": "G₁", 
+		"frequency": 49.00
+	},
+	{
+		"name": "G#₁/Ab₁", 
+		"frequency": 51.91
+	},
+	{
+		"name": "A₁", 
+		"frequency": 55.00
+	},
+	{
+		"name": "A#₁/Bb₁", 
+		"frequency": 58.27
+	},
+	{
+		"name": "B₁", 
+		"frequency": 61.74
+	},
+	{
+		"name": "C₂", 
+		"frequency": 65.41
+	},
+	{
+		"name": "C#₂/Db₂", 
+		"frequency": 69.30
+	},
+	{
+		"name": "D₂", 
+		"frequency": 73.42
+	},
+	{
+		"name": "D#₂/Eb₂", 
+		"frequency": 77.78
+	},
+	{
+		"name": "E₂", 
+		"frequency": 82.41
+	},
+	{
+		"name": "F₂", 
+		"frequency": 87.31
+	},
+	{
+		"name": "F#₂/Gb₂", 
+		"frequency": 92.50
+	},
+	{
+		"name": "G₂", 
+		"frequency": 98.00
+	},
+	{
+		"name": "G#₂/Ab₂", 
+		"frequency": 103.83
+	},
+	{
+		"name": "A₂", 
+		"frequency": 110.00
+	},
+	{
+		"name": "A#₂/Bb₂", 
+		"frequency": 116.54
+	},
+	{
+		"name": "B₂", 
+		"frequency": 123.47
+	},
+	{
+		"name": "C₃", 
+		"frequency": 130.81
+	},
+	{
+		"name": "C#₃/Db₃", 
+		"frequency": 138.59
+	},
+	{
+		"name": "D₃", 
+		"frequency": 146.83
+	},
+	{
+		"name": "D#₃/Eb₃", 
+		"frequency": 155.56
+	},
+	{
+		"name": "E₃", 
+		"frequency": 164.81
+	},
+	{
+		"name": "F₃", 
+		"frequency": 174.61
+	},
+	{
+		"name": "F#₃/Gb₃", 
+		"frequency": 185.00
+	},
+	{
+		"name": "G₃", 
+		"frequency": 196.00
+	},
+	{
+		"name": "G#₃/Ab₃", 
+		"frequency": 207.65
+	},
+	{
+		"name": "A₃", 
+		"frequency": 220.00
+	},
+	{
+		"name": "A#₃/Bb₃", 
+		"frequency": 233.08
+	},
+	{
+		"name": "B₃", 
+		"frequency": 246.94
+	},
+	{
+		"name": "C₄", 
+		"frequency": 261.63
+	},
+	{
+		"name": "C#₄/Db₄", 
+		"frequency": 277.18
+	},
+	{
+		"name": "D₄", 
+		"frequency": 293.66
+	},
+	{
+		"name": "D#₄/Eb₄", 
+		"frequency": 311.13
+	},
+	{
+		"name": "E₄", 
+		"frequency": 329.63
+	},
+	{
+		"name": "F₄", 
+		"frequency": 349.23
+	},
+	{
+		"name": "F#₄/Gb₄", 
+		"frequency": 369.99
+	},
+	{
+		"name": "G₄", 
+		"frequency": 392.00
+	},
+	{
+		"name": "G#₄/Ab₄", 
+		"frequency": 415.30
+	},
+	{
+		"name": "A₄", 
+		"frequency": 440.00
+	},
+	{
+		"name": "A#₄/Bb₄", 
+		"frequency": 466.16
+	},
+	{
+		"name": "B₄", 
+		"frequency": 493.88
+	},
+	{
+		"name": "C₅", 
+		"frequency": 523.25
+	},
+	{
+		"name": "C#₅/Db₅", 
+		"frequency": 554.37
+	},
+	{
+		"name": "D₅", 
+		"frequency": 587.33
+	},
+	{
+		"name": "D#₅/Eb₅", 
+		"frequency": 622.25
+	},
+	{
+		"name": "E₅", 
+		"frequency": 659.25
+	},
+	{
+		"name": "F₅", 
+		"frequency": 698.46
+	},
+	{
+		"name": "F#₅/Gb₅", 
+		"frequency": 739.99
+	},
+	{
+		"name": "G₅", 
+		"frequency": 783.99
+	},
+	{
+		"name": "G#₅/Ab₅", 
+		"frequency": 830.61
+	},
+	{
+		"name": "A₅", 
+		"frequency": 880.00
+	},
+	{
+		"name": "A#₅/Bb₅", 
+		"frequency": 932.33
+	},
+	{
+		"name": "B₅", 
+		"frequency": 987.77
+	},
+	{
+		"name": "C₆", 
+		"frequency": 1046.50
+	},
+	{
+		"name": "C#₆/Db₆", 
+		"frequency": 1108.73
+	},
+	{
+		"name": "D₆", 
+		"frequency": 1174.66
+	},
+	{
+		"name": "D#₆/Eb₆", 
+		"frequency": 1244.51
+	},
+	{
+		"name": "E₆", 
+		"frequency": 1318.51
+	},
+	{
+		"name": "F₆", 
+		"frequency": 1396.91
+	},
+	{
+		"name": "F#₆/Gb₆", 
+		"frequency": 1479.98
+	},
+	{
+		"name": "G₆", 
+		"frequency": 1567.98
+	},
+	{
+		"name": "G#₆/Ab₆", 
+		"frequency": 1661.22
+	},
+	{
+		"name": "A₆", 
+		"frequency": 1760.00
+	},
+	{
+		"name": "A#₆/Bb₆", 
+		"frequency": 1864.66
+	},
+	{
+		"name": "B₆", 
+		"frequency": 1975.53
+	},
+	{
+		"name": "C₇", 
+		"frequency": 2093.00
+	},
+	{
+		"name": "C#₇/Db₇", 
+		"frequency": 2217.46
+	},
+	{
+		"name": "D₇", 
+		"frequency": 2349.32
+	},
+	{
+		"name": "D#₇/Eb₇", 
+		"frequency": 2489.02
+	},
+	{
+		"name": "E₇", 
+		"frequency": 2637.02
+	},
+	{
+		"name": "F₇", 
+		"frequency": 2793.83
+	},
+	{
+		"name": "F#₇/Gb₇", 
+		"frequency": 2959.96
+	},
+	{
+		"name": "G₇", 
+		"frequency": 3135.96
+	},
+	{
+		"name": "G#₇/Ab₇", 
+		"frequency": 3322.44
+	},
+	{
+		"name": "A₇", 
+		"frequency": 3520.00
+	},
+	{
+		"name": "A#₇/Bb₇", 
+		"frequency": 3729.31
+	},
+	{
+		"name": "B₇", 
+		"frequency": 3951.07
+	},
+	{
+		"name": "C₈", 
+		"frequency": 4186.01
+	},
+	{
+		"name": "C#₈/Db₈", 
+		"frequency": 4434.92
+	},
+	{
+		"name": "D₈", 
+		"frequency": 4698.63
+	},
+	{
+		"name": "D#₈/Eb₈", 
+		"frequency": 4978.03
+	},
+	{
+		"name": "E₈", 
+		"frequency": 5274.04
+	},
+	{
+		"name": "F₈", 
+		"frequency": 5587.65
+	},
+	{
+		"name": "F#₈/Gb₈", 
+		"frequency": 5919.91
+	},
+	{
+		"name": "G₈", 
+		"frequency": 6271.93
+	},
+	{
+		"name": "G#₈/Ab₈", 
+		"frequency": 6644.88
+	},
+	{
+		"name": "A₈", 
+		"frequency": 7040.00
+	},
+	{
+		"name": "A#₈/Bb₈", 
+		"frequency": 7458.62
+	},
+	{
+		"name": "B₈", 
+		"frequency":7902.13
+	}
+]
