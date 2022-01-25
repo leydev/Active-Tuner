@@ -6,6 +6,7 @@ import getStream from './getStream';
 
 function useAudio(contextOptions?: AudioContextOptions) {
   const { t } = useTranslation();
+  const AudioContext = window.AudioContext || (window).webkitAudioContext;
   const [audioContext] = useState<AudioContext>(new AudioContext(contextOptions));
   const [analyzerNode] = useState<AnalyserNode>(audioContext.createAnalyser());
   const [deviceSettings, setDeviceSettings] = useState<MediaTrackSettings>({});
