@@ -211,9 +211,9 @@ function App() {
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog title="Sobre" open={dialogAbout}>
+      <Dialog title={t('dialog.about.title')} open={dialogAbout}>
         <DialogContent>
-          <div className="about" dangerouslySetInnerHTML={{ __html: marked.parse(t('about')) }} />
+          <div className="about" dangerouslySetInnerHTML={{ __html: marked.parse(t('dialog.about.text')) }} />
         </DialogContent>
         <DialogActions justifyContent="center">
           <Button type="button" color="#26CDE4" onClick={() => setDialogAbout(false)}>
