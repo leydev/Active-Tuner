@@ -14,8 +14,17 @@ function useAudio(contextOptions?: AudioContextOptions) {
 
   const getFloatTimeDomain = useCallback((bufferSize: number) => {
     const data: Float32Array = new Float32Array(bufferSize);
+    const dataForByte: Uint8Array = new Uint8Array(2048);
 
-    analyzerNode.getFloatTimeDomainData(data);
+    if (typeof analyzerNode.getFloatTimeDomainData === 'function') {
+      analyzerNode.getFloatTimeDomainData(data);
+    } else {
+      // A hack for safari when it don't have getFloatTimeDomainData
+      analyzerNode.getByteTimeDomainData(dataForByte);
+      for (let tmp = 0, o = data.length; o > tmp; tmp += 1) {
+        data[tmp] = 0.0078125 * (dataForByte[tmp] - 128);
+      }
+    }
 
     return data;
   }, [analyzerNode]);
