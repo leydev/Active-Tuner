@@ -21,7 +21,8 @@ import { Info as IconInfo } from '@/components/icons/Info';
 import { Github as IconGithub } from '@/components/icons/Github';
 import { Sun as IconSun } from '@/components/icons/Sun';
 import { Moon as IconMoon } from '@/components/icons/Moon';
-import Ellipsis from './components/loader/Ellipsis';
+import Ellipsis from '@/components/loader/Ellipsis';
+import useTheme from '@/hooks/useTheme';
 
 import '@/app.scss';
 
@@ -48,6 +49,7 @@ function App(props: AppProps) {
   const [dialogError, setDialogError] = useState<boolean>(false);
   const [devicesMic, setDevicesMic] = useState<MediaDeviceInfo[]>([]);
   const pitch = usePitch();
+  const { layout } = useTheme(config.theme);
   const {
     createStream, getDevices, getByteTimeDomain, getFloatTimeDomain,
     destroyStream, resume, deviceSettings, sampleRate, microphoneName,
@@ -157,11 +159,11 @@ function App(props: AppProps) {
   }, []);
 
   return (
-    <div className="relative flex items-center h-screen">
+    <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud }}>
       <div>
         <PitchDisplay onLoaded={canvasLoaded} style={{ width: '100vw', height: '30vh' }} />
         <div className="flex flex-col items-center mt-24">
-          <Button ariaLabel="Microphones" type="button" icon color="#26E4B7" onClick={() => setDialogMic((sta) => !sta)}>
+          <Button ariaLabel="Microphones" type="button" icon color={layout.buttons.okay.color} onClick={() => setDialogMic((sta) => !sta)}>
             <IconMicrophone />
           </Button>
           <div className="mt-4">
@@ -171,7 +173,7 @@ function App(props: AppProps) {
           </div>
         </div>
       </div>
-      <Dialog title={t('dialog.microphones.title')} open={dialogMic}>
+      <Dialog title={t('dialog.microphones.title')} open={dialogMic} style={{ backgroundColor: layout.backgroud, color: layout.text }}>
         <DialogContent>
           <List>
             {devicesMic.map((microphone: MediaDeviceInfo) => (
@@ -188,74 +190,74 @@ function App(props: AppProps) {
           </List>
         </DialogContent>
       </Dialog>
-      <Dialog title={t('dialog.permissions.title')} open={dialogPermissions}>
+      <Dialog title={t('dialog.permissions.title')} open={dialogPermissions} style={{ backgroundColor: layout.backgroud, color: layout.text }}>
         <DialogContent>
           <p>
             {t('dialog.permissions.text')}
           </p>
           <div className="flex justify-center mt-4">
-            <IconMicrophone />
+            <IconMicrophone color={layout.text} />
           </div>
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button disabled={waitingPermissions} type="button" color="#26CDE4" onClick={getPermissions}>
+          <Button disabled={waitingPermissions} type="button" color={layout.buttons.okay.color} colorText={layout.buttons.okay.textColor} onClick={getPermissions}>
             {waitingPermissions ? <Ellipsis /> : t('buttons.okay')}
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog title={t('dialog.denied.title')} open={dialogDenied}>
+      <Dialog title={t('dialog.denied.title')} open={dialogDenied} style={{ backgroundColor: layout.backgroud, color: layout.text }}>
         <DialogContent>
           <p>
             {t('dialog.denied.text')}
           </p>
           <div className="flex justify-center mt-4">
-            <IconMicrophoneMute color="#E25A5A" />
+            <IconMicrophoneMute color={layout.text} />
           </div>
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button type="button" color="#26CDE4" onClick={getHelpPermissions}>
+          <Button type="button" color={layout.buttons.okay.color} colorText={layout.buttons.okay.textColor} onClick={getHelpPermissions}>
             {t('buttons.get-help')}
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog title={t('dialog.error.title')} open={dialogError}>
+      <Dialog title={t('dialog.error.title')} open={dialogError} style={{ backgroundColor: layout.backgroud, color: layout.text }}>
         <DialogContent>
           <p>
             {t('dialog.error.text')}
           </p>
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button type="button" color="#26CDE4" onClick={() => window.location.reload()}>
+          <Button type="button" color={layout.buttons.okay.color} colorText={layout.buttons.okay.textColor} onClick={() => window.location.reload()}>
             {t('buttons.exit')}
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog title={t('dialog.about.title')} open={dialogAbout}>
+      <Dialog title={t('dialog.about.title')} open={dialogAbout} style={{ backgroundColor: layout.backgroud, color: layout.text }}>
         <DialogContent>
           <div className="about" dangerouslySetInnerHTML={{ __html: marked.parse(t('dialog.about.text')) }} />
         </DialogContent>
         <DialogActions justifyContent="center">
-          <Button type="button" color="#26CDE4" onClick={() => setDialogAbout(false)}>
+          <Button type="button" color={layout.buttons.okay.color} colorText={layout.buttons.okay.textColor} onClick={() => setDialogAbout(false)}>
             {t('buttons.close')}
           </Button>
         </DialogActions>
       </Dialog>
       <div className="fixed top-4 right-4">
         <Button ariaLabel="Sobre o app" type="button" icon onClick={() => setDialogAbout(true)}>
-          <IconInfo color="#818181" />
+          <IconInfo color={layout.icon} />
         </Button>
         <Button ariaLabel="Github" type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
-          <IconGithub color="#818181" />
+          <IconGithub color={layout.icon} />
         </Button>
         {
           config.theme === Theme.LIGHT
             ? (
               <Button ariaLabel="theme mode dark" type="button" icon onClick={() => setTheme(Theme.DARK)}>
-                <IconMoon color="#818181" />
+                <IconMoon color={layout.icon} />
               </Button>
             ) : (
               <Button ariaLabel="theme mode light" type="button" icon onClick={() => setTheme(Theme.LIGHT)}>
-                <IconSun color="#818181" />
+                <IconSun color={layout.icon} />
               </Button>
             )
         }
