@@ -39,7 +39,6 @@ type AppProps = ConnectedProps<typeof connector>;
 
 function App(props: AppProps) {
   const { config, setTheme } = props;
-  console.log(config.theme);
   const { t } = useTranslation();
   const [dialogPermissions, setDialogPermissions] = useState<boolean>(true);
   const [dialogDenied, setDialogDenied] = useState<boolean>(false);
@@ -54,6 +53,7 @@ function App(props: AppProps) {
     createStream, getDevices, getByteTimeDomain, getFloatTimeDomain,
     destroyStream, resume, deviceSettings, sampleRate, microphoneName,
   } = useAudio();
+
   const [render] = useState(render2D({
     bufferLength: 1024,
     text: {
@@ -66,6 +66,7 @@ function App(props: AppProps) {
       color: '#E5E5E5',
       width: 6,
     },
+    background: layout.backgroud,
   }));
 
   const initialize = useCallback((audio: boolean | MediaTrackConstraints = true) => {
@@ -78,8 +79,8 @@ function App(props: AppProps) {
           render.setBuffer(getByteTimeDomain(1024));
           hertz = pitch.detect(getFloatTimeDomain(2048), sampleRate);
           noteResult = pitch.getNote(hertz);
-          if (noteResult.accuracy < 2) render.setTextColor('#26e4b7');
-          else render.setTextColor('#000');
+          if (noteResult.accuracy < 2) render.setTextColor('#6A90F2');
+          else render.setTextColor(undefined);
 
           render.setText(noteResult.note.name);
           render.setHertz(hertz.toFixed(2));
@@ -89,6 +90,22 @@ function App(props: AppProps) {
         setDialogError(true);
       });
   }, [createStream, getByteTimeDomain, render, sampleRate, getFloatTimeDomain, pitch]);
+
+  useEffect(() => {
+    render.setTheme({
+      background: layout.backgroud,
+      wave: {
+        color: layout.wave,
+        width: 6,
+      },
+      text: {
+        align: 'center',
+        font: 'bold 120px roboto',
+        value: 'E₇',
+        color: layout.text,
+      },
+    });
+  }, [layout, render]);
 
   const changeMicrophone = useCallback((deviceId: string) => {
     setDialogMic(false);
@@ -159,7 +176,7 @@ function App(props: AppProps) {
   }, []);
 
   return (
-    <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud }}>
+    <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud, color: layout.text }}>
       <div>
         <PitchDisplay onLoaded={canvasLoaded} style={{ width: '100vw', height: '30vh' }} />
         <div className="flex flex-col items-center mt-24">

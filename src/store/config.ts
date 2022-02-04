@@ -1,7 +1,7 @@
 import { Store, Theme, ActionConfig } from '@/types.d';
 
 const initState: Store.ConfigState = {
-  theme: Theme.LIGHT,
+  theme: Theme.DARK,
 };
 
 function reducer(state: Store.ConfigState = initState, action: Store.Action<ActionConfig>) {
