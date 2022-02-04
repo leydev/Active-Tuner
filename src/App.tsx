@@ -1,7 +1,11 @@
 /* eslint-disable react/no-danger */
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { connect, ConnectedProps } from 'react-redux';
 import { marked } from 'marked';
+
+import { Store, Theme } from '@/types.d';
+import { setTheme as setThemeAction } from '@/store/actions/config';
 
 import { PitchDisplay } from '@/components/PitchDisplay';
 import { Dialog, DialogContent, DialogActions } from '@/components/Dialog';
@@ -15,11 +19,26 @@ import { Microphone as IconMicrophone } from '@/components/icons/Microphone';
 import { MicrophoneMute as IconMicrophoneMute } from '@/components/icons/MicrophoneMute';
 import { Info as IconInfo } from '@/components/icons/Info';
 import { Github as IconGithub } from '@/components/icons/Github';
+import { Sun as IconSun } from '@/components/icons/Sun';
+import { Moon as IconMoon } from '@/components/icons/Moon';
 import Ellipsis from './components/loader/Ellipsis';
 
 import '@/app.scss';
 
-function App() {
+export const connector = connect(
+  (state: Store.ReducerRoot) => ({
+    config: state.config,
+  }),
+  (dispatch) => ({
+    setTheme: (theme: Theme) => dispatch(setThemeAction(theme)),
+  }),
+);
+
+type AppProps = ConnectedProps<typeof connector>;
+
+function App(props: AppProps) {
+  const { config, setTheme } = props;
+  console.log(config.theme);
   const { t } = useTranslation();
   const [dialogPermissions, setDialogPermissions] = useState<boolean>(true);
   const [dialogDenied, setDialogDenied] = useState<boolean>(false);
@@ -228,9 +247,21 @@ function App() {
         <Button ariaLabel="Github" type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
           <IconGithub color="#818181" />
         </Button>
+        {
+          config.theme === Theme.LIGHT
+            ? (
+              <Button ariaLabel="theme mode dark" type="button" icon onClick={() => setTheme(Theme.DARK)}>
+                <IconMoon color="#818181" />
+              </Button>
+            ) : (
+              <Button ariaLabel="theme mode light" type="button" icon onClick={() => setTheme(Theme.LIGHT)}>
+                <IconSun color="#818181" />
+              </Button>
+            )
+        }
       </div>
     </div>
   );
 }
 
-export default App;
+export default connector(App);
