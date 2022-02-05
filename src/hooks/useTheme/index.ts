@@ -1,10 +1,13 @@
-import { Theme } from '@/types';
+import { Theme } from '@/store/enums';
 
-import layout from '@/assets/theme.json';
+import colorPalette from '@/assets/theme.json';
+
+type ColorPalette = typeof colorPalette;
 
 function useTheme(theme: Theme) {
+  const palette: ColorPalette = colorPalette;
   return {
-    layout: layout[theme],
+    layout: palette[theme],
   };
 }
 
