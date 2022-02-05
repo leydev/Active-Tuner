@@ -41,7 +41,8 @@ declare global {
 
   export namespace Store {
     export interface ConfigState {
-      theme: Theme
+      theme: Theme;
+      firstTime: boolean;
     }
 
     export interface Action<T = string, P = Record<string, unknown>> {

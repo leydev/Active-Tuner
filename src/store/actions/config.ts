@@ -9,3 +9,12 @@ export function setTheme(theme: Theme): Store.Action<ActionConfig.SET_THEME, Rec
     },
   };
 }
+
+export function setFirstTime(firstTime: boolean): Store.Action<ActionConfig.SET_THEME, Record<'firstTime', boolean>> {
+  return {
+    type: ActionConfig.SET_THEME,
+    payload: {
+      firstTime,
+    },
+  };
+}
