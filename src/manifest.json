@@ -43,8 +43,8 @@
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#3D3B38",
+  "theme_color": "#3D3B38",
   "screenshots": [
     {
       "src": "assets/screenshots/mobile-c2.png",
