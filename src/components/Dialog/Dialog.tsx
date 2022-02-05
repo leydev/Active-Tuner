@@ -17,7 +17,7 @@ export function Dialog(props: PropsWithChildren<DialogProps>) {
       className="fixed w-screen h-screen top-0 flex justify-center items-center px-4"
       style={{
         visibility: open ? 'visible' : 'hidden',
-        backgroundColor: 'rgba(0,0,0,0.1)',
+        backgroundColor: 'rgba(0,0,0,0.33)',
       }}
     >
       <div className="p-7 bg-white rounded-md font-medium max-w-md" style={style}>

@@ -79,7 +79,7 @@ function App(props: AppProps) {
           render.setBuffer(getByteTimeDomain(1024));
           hertz = pitch.detect(getFloatTimeDomain(2048), sampleRate);
           noteResult = pitch.getNote(hertz);
-          if (noteResult.accuracy < 2) render.setTextColor('#6A90F2');
+          if (noteResult.accuracy < 2) render.setTextColor(layout.note.match);
           else render.setTextColor(undefined);
 
           render.setText(noteResult.note.name);
@@ -89,7 +89,7 @@ function App(props: AppProps) {
       .catch(() => {
         setDialogError(true);
       });
-  }, [createStream, getByteTimeDomain, render, sampleRate, getFloatTimeDomain, pitch]);
+  }, [createStream, getByteTimeDomain, render, sampleRate, getFloatTimeDomain, pitch, layout]);
 
   useEffect(() => {
     render.setTheme({
