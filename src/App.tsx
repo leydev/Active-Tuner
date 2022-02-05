@@ -23,6 +23,7 @@ import { Sun as IconSun } from '@/components/icons/Sun';
 import { Moon as IconMoon } from '@/components/icons/Moon';
 import Ellipsis from '@/components/loader/Ellipsis';
 import useTheme from '@/hooks/useTheme';
+import Logo from './components/Logo';
 
 import '@/app.scss';
 
@@ -177,6 +178,27 @@ function App(props: AppProps) {
 
   return (
     <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud, color: layout.text }}>
+      <Logo theme={config.theme} />
+      <div className="fixed top-4 right-4">
+        <Button ariaLabel="Sobre o app" type="button" icon onClick={() => setDialogAbout(true)}>
+          <IconInfo color={layout.icon} />
+        </Button>
+        <Button ariaLabel="Github" type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
+          <IconGithub color={layout.icon} />
+        </Button>
+        {
+          config.theme === Theme.LIGHT
+            ? (
+              <Button ariaLabel="theme mode dark" type="button" icon onClick={() => setTheme(Theme.DARK)}>
+                <IconMoon color={layout.icon} />
+              </Button>
+            ) : (
+              <Button ariaLabel="theme mode light" type="button" icon onClick={() => setTheme(Theme.LIGHT)}>
+                <IconSun color={layout.icon} />
+              </Button>
+            )
+        }
+      </div>
       <div>
         <PitchDisplay onLoaded={canvasLoaded} style={{ width: '100vw', height: '30vh' }} />
         <div className="flex flex-col items-center mt-24">
@@ -259,26 +281,6 @@ function App(props: AppProps) {
           </Button>
         </DialogActions>
       </Dialog>
-      <div className="fixed top-4 right-4">
-        <Button ariaLabel="Sobre o app" type="button" icon onClick={() => setDialogAbout(true)}>
-          <IconInfo color={layout.icon} />
-        </Button>
-        <Button ariaLabel="Github" type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
-          <IconGithub color={layout.icon} />
-        </Button>
-        {
-          config.theme === Theme.LIGHT
-            ? (
-              <Button ariaLabel="theme mode dark" type="button" icon onClick={() => setTheme(Theme.DARK)}>
-                <IconMoon color={layout.icon} />
-              </Button>
-            ) : (
-              <Button ariaLabel="theme mode light" type="button" icon onClick={() => setTheme(Theme.LIGHT)}>
-                <IconSun color={layout.icon} />
-              </Button>
-            )
-        }
-      </div>
     </div>
   );
 }
