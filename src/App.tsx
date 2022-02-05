@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { connect, ConnectedProps } from 'react-redux';
 import { marked } from 'marked';
 
-import { Store, Theme } from '@/types.d';
+import { Theme } from '@/store/enums';
 import { setTheme as setThemeAction } from '@/store/actions/config';
 
 import { PitchDisplay } from '@/components/PitchDisplay';

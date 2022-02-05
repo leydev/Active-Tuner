@@ -1,4 +1,4 @@
-import { Store, Theme, ActionConfig } from '@/types.d';
+import { ActionConfig, Theme } from './enums';
 
 const initState: Store.ConfigState = {
   theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.DARK : Theme.LIGHT,

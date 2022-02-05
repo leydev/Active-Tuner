@@ -1,8 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import type { Theme } from './store/enums';
+
 /**
  * Here you can declare the types of libs third-party
  */
+
 declare global {
+  interface Window {
+    webkitAudioContext: {
+      new(contextOptions?: AudioContextOptions): AudioContext;
+      prototype: AudioContext;
+    }
+  }
 
   type FunctionVoid = () => void;
 
@@ -28,15 +37,6 @@ declare global {
     }
 
     type CallbackFrame = FunctionVoid;
-  }
-
-  export enum Theme {
-    DARK = 'dark',
-    LIGHT = 'light',
-  }
-
-  export enum ActionConfig {
-    SET_THEME = 'SET_THEME',
   }
 
   export namespace Store {
