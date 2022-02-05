@@ -5,7 +5,10 @@ import { connect, ConnectedProps } from 'react-redux';
 import { marked } from 'marked';
 
 import { Theme } from '@/store/enums';
-import { setTheme as setThemeAction } from '@/store/actions/config';
+import {
+  setTheme as setThemeAction,
+  setFirstTime as setFirstTimeAction,
+} from '@/store/actions/config';
 
 import { PitchDisplay } from '@/components/PitchDisplay';
 import { Dialog, DialogContent, DialogActions } from '@/components/Dialog';
@@ -33,19 +36,20 @@ export const connector = connect(
   }),
   (dispatch) => ({
     setTheme: (theme: Theme) => dispatch(setThemeAction(theme)),
+    setFirstTime: (firstTime: boolean) => dispatch(setFirstTimeAction(firstTime)),
   }),
 );
 
 type AppProps = ConnectedProps<typeof connector>;
 
 function App(props: AppProps) {
-  const { config, setTheme } = props;
+  const { config, setTheme, setFirstTime } = props;
   const { t } = useTranslation();
-  const [dialogPermissions, setDialogPermissions] = useState<boolean>(true);
+  const [dialogPermissions, setDialogPermissions] = useState<boolean>(false);
   const [dialogDenied, setDialogDenied] = useState<boolean>(false);
   const [dialogAbout, setDialogAbout] = useState<boolean>(false);
   const [waitingPermissions, setWaitingPermissions] = useState<boolean>(false);
-  const [dialogMic, setDialogMic] = useState<boolean>(false);
+  const [dialogMic, setDialogMic] = useState<boolean>(true);
   const [dialogError, setDialogError] = useState<boolean>(false);
   const [devicesMic, setDevicesMic] = useState<MediaDeviceInfo[]>([]);
   const pitch = usePitch();
@@ -71,6 +75,7 @@ function App(props: AppProps) {
   }));
 
   const initialize = useCallback((audio: boolean | MediaTrackConstraints = true) => {
+    setFirstTime(false);
     createStream({ audio })
       .then(() => {
         let hertz: number;
@@ -90,7 +95,10 @@ function App(props: AppProps) {
       .catch(() => {
         setDialogError(true);
       });
-  }, [createStream, getByteTimeDomain, render, sampleRate, getFloatTimeDomain, pitch, layout]);
+  }, [
+    createStream, getByteTimeDomain,
+    render, sampleRate, getFloatTimeDomain, pitch, layout, setFirstTime,
+  ]);
 
   useEffect(() => {
     render.setTheme({
@@ -109,10 +117,12 @@ function App(props: AppProps) {
   }, [layout, render]);
 
   const changeMicrophone = useCallback((deviceId: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    resume();
     setDialogMic(false);
     destroyStream();
     initialize({ deviceId });
-  }, [destroyStream, initialize]);
+  }, [destroyStream, initialize, resume]);
 
   const canvasLoaded = useCallback((canvas: HTMLCanvasElement) => {
     render.setCanvas(canvas);
@@ -137,8 +147,6 @@ function App(props: AppProps) {
   const getPermissions = useCallback(() => {
     const { mediaDevices } = navigator;
     setWaitingPermissions(true);
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    resume();
 
     mediaDevices.getUserMedia({ audio: true })
       .then(() => getMicrophonesAvailable())
@@ -155,7 +163,7 @@ function App(props: AppProps) {
       .finally(() => {
         setWaitingPermissions(false);
       });
-  }, [getMicrophonesAvailable, resume]);
+  }, [getMicrophonesAvailable]);
 
   const getHelpPermissions = useCallback(() => {
     if (/chrom/i.test(navigator.userAgent)) {
@@ -171,10 +179,13 @@ function App(props: AppProps) {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setDialogAbout(true);
-    }, 1000 * 60 * 2);
-  }, []);
+    if (config.firstTime === true) {
+      setDialogPermissions(true);
+      setTimeout(() => {
+        setDialogAbout(true);
+      }, 1000 * 60);
+    } else getMicrophonesAvailable();
+  }, [config, getMicrophonesAvailable]);
 
   return (
     <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud, color: layout.text }}>
