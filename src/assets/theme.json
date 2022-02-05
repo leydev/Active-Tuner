@@ -1,5 +1,8 @@
 {
   "dark": {
+    "list": {
+      "line": "#5E462D"
+    },
     "backgroud": "#3D3B38",
     "textColor": "#CEA26E",
     "buttons": {
@@ -17,6 +20,9 @@
     "text": "#CEA26E"
   },
   "light": {
+    "list": {
+      "line": "#CEA26E"
+    },
     "backgroud": "#ffffff",
     "textColor": "#5E462D",
     "buttons": {

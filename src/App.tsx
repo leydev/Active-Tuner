@@ -217,6 +217,7 @@ function App(props: AppProps) {
           <List>
             {devicesMic.map((microphone: MediaDeviceInfo) => (
               <ItemButton
+                style={{ borderColor: layout.list.line }}
                 key={microphone.deviceId}
                 onClick={() => changeMicrophone(microphone.deviceId)}
                 active={microphone.deviceId === deviceSettings.deviceId}
