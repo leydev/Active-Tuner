@@ -1,7 +1,7 @@
 import { Store, Theme, ActionConfig } from '@/types.d';
 
 const initState: Store.ConfigState = {
-  theme: Theme.DARK,
+  theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.DARK : Theme.LIGHT,
 };
 
 function reducer(state: Store.ConfigState = initState, action: Store.Action<ActionConfig>) {
