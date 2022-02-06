@@ -11,10 +11,10 @@ function Logo(props: PropsWithChildren<LogoProps>) {
   const { theme } = props;
 
   return (
-    <div className="fixed top-4">
+    <div className="fixed top-4 left-4">
       {theme === Theme.DARK
-        ? (<img src={logoDark} alt="Active Tuner" />)
-        : (<img src={logoLight} alt="Active Tuner" />)}
+        ? (<img src={logoDark} width="80px" alt="Active Tuner" />)
+        : (<img src={logoLight} width="80px" alt="Active Tuner" />)}
     </div>
   );
 }
