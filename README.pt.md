@@ -2,7 +2,6 @@
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/leydev/Tuner.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/leydev/Tuner/context:javascript)
 
 # Active Tuner 
-<sup>Versão: 1.1.6</sup>
 
 ![alt text](src/assets/screenshots/desktop.png "Screenshot app for desktop")
 
