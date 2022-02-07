@@ -1,0 +1,42 @@
+{
+  "dark": {
+    "list": {
+      "line": "#5E462D"
+    },
+    "backgroud": "#3D3B38",
+    "textColor": "#CEA26E",
+    "buttons": {
+      "okay": {
+        "color": "#D37146",
+        "textColor": "#3D3B38"
+      }
+    },
+    "note": {
+      "match": "#49B83F",
+      "color": "#CEA26E"
+    },
+    "wave": "#685F55",
+    "icon": "#CEA26E",
+    "text": "#CEA26E"
+  },
+  "light": {
+    "list": {
+      "line": "#CEA26E"
+    },
+    "backgroud": "#ffffff",
+    "textColor": "#5E462D",
+    "buttons": {
+      "okay": {
+        "color": "#D37146",
+        "textColor": "#FFFFFF"
+      }
+    },
+    "note": {
+      "match": "#49B83F",
+      "color": "#5E462D"
+    },
+    "wave": "#E5D9CC",
+    "icon": "#5E462D",
+    "text": "#5E462D"
+  }
+}

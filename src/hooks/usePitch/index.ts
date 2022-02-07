@@ -20,8 +20,11 @@ export interface NoteResult {
   };
   /** proximity accuracy */
   accuracy: number;
+  /** Current Hz */
+  hertz: number;
 }
 
+let lastNoteResult: NoteResult;
 function usePitch() {
   const detect = useCallback((buffer: Float32Array, sampleRate: number) => {
     const hertz = autoCorrelate(buffer, sampleRate);
@@ -31,6 +34,7 @@ function usePitch() {
   const getNote = useCallback((hertz: number): NoteResult => {
     const notes: Array<Note> = notesFile;
     let currentNoteIndex = -1;
+    let pitch: NoteResult;
 
     for (let i = 0; i < notes.length; i += 1) {
       const currentFrequency: number = notes[i].frequency;
@@ -42,41 +46,58 @@ function usePitch() {
     }
 
     if (currentNoteIndex === 0) {
-      return {
+      pitch = {
         note: notes[0],
         range: {
           out: true,
           at: -1,
         },
         accuracy: Math.abs(notes[0].frequency - hertz),
+        hertz,
       };
-    }
-
-    if (currentNoteIndex === -1) {
-      return {
+    } else if (currentNoteIndex === -1) {
+      pitch = {
         note: notes[notes.length - 1],
         range: {
           out: true,
           at: 1,
         },
         accuracy: Math.abs(notes[notes.length - 1].frequency - hertz),
+        hertz,
+      };
+    } else {
+      const prevNote = notes[currentNoteIndex - 1];
+      const nextNote = notes[currentNoteIndex];
+
+      const prevDelta = Math.abs(prevNote.frequency - hertz);
+      const nextDelta = Math.abs(nextNote.frequency - hertz);
+
+      pitch = {
+        note: (prevDelta < nextDelta) ? prevNote : nextNote,
+        range: {
+          out: false,
+          at: 0,
+        },
+        accuracy: (prevDelta < nextDelta) ? prevDelta : nextDelta,
+        hertz,
       };
     }
 
-    const prevNote = notes[currentNoteIndex - 1];
-    const nextNote = notes[currentNoteIndex];
+    if (/[A-Z]#[₀-₈]\/[A-Z]b[₀-₈]/.test(pitch.note.name)) {
+      const { name: currentName } = pitch.note;
+      const { frequency: currentFrequency } = pitch.note;
+      const names = currentName.split('/');
+      let semitone: string = names[0];
 
-    const prevDelta = Math.abs(prevNote.frequency - hertz);
-    const nextDelta = Math.abs(nextNote.frequency - hertz);
+      if (lastNoteResult) {
+        semitone = hertz <= currentFrequency ? names[0] : names[1];
+      }
 
-    return {
-      note: (prevDelta < nextDelta) ? prevNote : nextNote,
-      range: {
-        out: false,
-        at: 0,
-      },
-      accuracy: (prevDelta < nextDelta) ? prevDelta : nextDelta,
-    };
+      pitch.note.name = semitone;
+    }
+
+    lastNoteResult = pitch;
+    return pitch;
   }, []);
 
   return {

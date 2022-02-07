@@ -1,70 +1,73 @@
 {
   "name": "Active Tuner",
-  "short_name": "Tuner",
+  "short_name": "Active Tuner",
   "description": "It is an analyser of sound waves, to aid in the tuning of musical instruments. It detects frequencies between C₀ (16,35 Hertz) and B₈  (7902,13 Hertz), and shows a musical note  that matches the recognized frequency.",
+  "categories": ["music", "utilities"],
+  "dir": "ltr",
+  "lang": "pt",
   "icons": [
     {
-      "src": "assets/icons/icon_x512.png",
+      "src": "assets/icons/maskable_icon_x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "assets/icons/icon_x384.png",
+      "src": "assets/icons/maskable_icon_x384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon_x192.png",
+      "src": "assets/icons/maskable_icon_x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon_x128.png",
+      "src": "assets/icons/maskable_icon_x128.png",
       "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/icon_x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/icon_x72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/icon_x48.png",
-      "sizes": "48x48",
       "type": "image/png"
     }
   ],
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#3D3B38",
+  "theme_color": "#3D3B38",
   "screenshots": [
     {
       "src": "assets/screenshots/mobile-c2.png",
-      "sizes": "432x969",
-      "type": "image/png"
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Semitone detected"
     },
     {
       "src": "assets/screenshots/mobile-gsus.png",
-      "sizes": "431x968",
-      "type": "image/png"
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "C detected"
     },
     {
       "src": "assets/screenshots/mobile.png",
-      "sizes": "435x971",
-      "type": "image/png"
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "C detected"
     },
     {
       "src": "assets/screenshots/mobile-c.png",
-      "sizes": "435x971",
-      "type": "image/png"
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "C detected"
+    },
+    {
+      "src": "assets/screenshots/desktop.png",
+      "sizes": "1967x633",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "G detected"
     }
   ]
 }

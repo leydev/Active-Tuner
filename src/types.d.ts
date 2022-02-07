@@ -17,10 +17,3 @@ declare module '*.gif' {
   const value: string;
   export default value;
 }
-
-interface Window { 
-  webkitAudioContext: {
-    new (contextOptions?: AudioContextOptions): AudioContext;
-    prototype: AudioContext;
-  }
-}

@@ -20,7 +20,7 @@ function drawText(
 ) {
   context.font = config.text ? config.text.font : '50px Arial';
   context.textAlign = config.text ? config.text.align : 'center';
-  context.fillStyle = textColor;
+  context.fillStyle = textColor || config.text.color;
   context.fillText(defaultText(text), (canvas.width / 2), (canvas.height / 2) + 40);
 }
 
@@ -74,6 +74,7 @@ function drawLine(
 }
 
 function render2D(config: Render2D.Parameters) {
+  let theme = config;
   const bufferLength: number = config.bufferLength || 0;
   let textColor = '#000';
   let buffer: Uint8Array = new Uint8Array(config.bufferLength);
@@ -88,10 +89,10 @@ function render2D(config: Render2D.Parameters) {
     requestAnimationFrame(draw);
     callbackFrame();
 
-    drawBackground(context, config, canvas);
-    drawLine(context, config, canvas, bufferLength, buffer);
-    drawText(context, config, canvas, text, textColor);
-    drawHertz(context, config, canvas, hertz);
+    drawBackground(context, theme, canvas);
+    drawLine(context, theme, canvas, bufferLength, buffer);
+    drawText(context, theme, canvas, text, textColor);
+    drawHertz(context, theme, canvas, hertz);
   };
 
   return {
@@ -110,11 +111,14 @@ function render2D(config: Render2D.Parameters) {
     setText(value: string) {
       text = value;
     },
-    setTextColor(value: string) {
+    setTextColor(value: string | undefined) {
       textColor = value;
     },
     setHertz(value: string) {
       hertz = value;
+    },
+    setTheme(cfg: Partial<Render2D.Parameters>) {
+      theme = cfg as Required<Render2D.Parameters>;
     },
     draw,
   };
