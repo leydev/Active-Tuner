@@ -64,7 +64,7 @@
     },
     {
       "src": "assets/screenshots/desktop.png",
-      "sizes": "1967x633",
+      "sizes": "1367x633",
       "type": "image/png",
       "platform": "wide",
       "label": "G detected"
