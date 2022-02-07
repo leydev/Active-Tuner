@@ -187,13 +187,14 @@ function App(props: AppProps) {
       return;
     }
 
-    if (!/chrom/i.test(navigator.userAgent)) {
-      setDialogPermissions(true);
-      return;
-    }
-
     getMicrophonesAvailable();
   }, [config, getMicrophonesAvailable]);
+
+  useEffect(() => {
+    if (!/chrom/i.test(navigator.userAgent)) {
+      setDialogPermissions(true);
+    }
+  }, []);
 
   return (
     <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud, color: layout.text }}>
