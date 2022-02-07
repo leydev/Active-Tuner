@@ -184,7 +184,15 @@ function App(props: AppProps) {
       setTimeout(() => {
         setDialogAbout(true);
       }, 1000 * 60);
-    } else getMicrophonesAvailable();
+      return;
+    }
+
+    if (!/chrom/i.test(navigator.userAgent)) {
+      setDialogPermissions(true);
+      return;
+    }
+
+    getMicrophonesAvailable();
   }, [config, getMicrophonesAvailable]);
 
   return (
