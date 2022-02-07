@@ -1,6 +1,6 @@
 {
   "name": "react-ts",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "Analyser of sound waves, to aid in the tuning of musical instruments. It detects frequencies between C₀ (16,35 Hertz) and B₈  (7902,13 Hertz), and shows a musical note  that matches the recognized frequency.",
   "private": true,
   "scripts": {
@@ -22,10 +22,6 @@
     {
       "name": "Renan Lopes",
       "url": "https://github.com/RenanLopes77"
-    },
-    {
-      "name": "Saulo Freire",
-      "url": "https://github.com/freirezinho"
     }
   ],
   "devDependencies": {

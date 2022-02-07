@@ -37,6 +37,9 @@ Algoritmo de detecção de pitch (Pitch detection algorithm - PDA)
   - <a href="https://www.linkedin.com/in/renanlopes77/" target="_blank">Renan Lopes</a>
   - <a href="https://www.linkedin.com/in/wesley-a/" target="_blank">Wesley Araujo</a>
 
+## Designer
+  - <a href="https://www.behance.net/luizgusiqueir" target="_blank" rel="noopener">Luiz Gustavo</a>
+
 ## Agradecimentos
   - <a href="https://github.com/freirezinho" target="_blank">Saulo Freire</a>
 
