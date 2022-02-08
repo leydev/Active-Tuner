@@ -14,6 +14,7 @@ import { PitchDisplay } from '@/components/PitchDisplay';
 import { Dialog, DialogContent, DialogActions } from '@/components/Dialog';
 import { List, ItemButton } from '@/components/List';
 import { Button } from '@/components/Button';
+import { Fab as FabButton } from '@/components/Button/Fab';
 import useAudio from '@/hooks/useAudio';
 import render2D from '@/utils/render2D';
 
@@ -24,6 +25,7 @@ import { Info as IconInfo } from '@/components/icons/Info';
 import { Github as IconGithub } from '@/components/icons/Github';
 import { Sun as IconSun } from '@/components/icons/Sun';
 import { Moon as IconMoon } from '@/components/icons/Moon';
+import { MoonSun as IconMoonSun } from '@/components/icons/MoonSun';
 import Ellipsis from '@/components/loader/Ellipsis';
 import useTheme from '@/hooks/useTheme';
 import Logo from './components/Logo';
@@ -53,7 +55,7 @@ function App(props: AppProps) {
   const [dialogError, setDialogError] = useState<boolean>(false);
   const [devicesMic, setDevicesMic] = useState<MediaDeviceInfo[]>([]);
   const pitch = usePitch();
-  const { layout } = useTheme(config.theme);
+  const { layout, themeMode } = useTheme(config.theme);
   const {
     createStream, getDevices, getByteTimeDomain, getFloatTimeDomain,
     destroyStream, resume, deviceSettings, sampleRate, microphoneName,
@@ -196,9 +198,26 @@ function App(props: AppProps) {
     }
   }, []);
 
+  const handleThemeMode = useCallback((index: number) => {
+    switch (index) {
+      case 0:
+        setTheme(Theme.LIGHT);
+        break;
+      case 1:
+        setTheme(Theme.DARK);
+        break;
+      case 2:
+        setTheme(Theme.AUTO);
+        break;
+
+      default:
+        break;
+    }
+  }, [setTheme]);
+
   return (
     <div className="relative flex items-center h-screen" style={{ backgroundColor: layout.backgroud, color: layout.text }}>
-      <Logo theme={config.theme} />
+      <Logo theme={themeMode} />
       <div className="fixed top-4 right-4">
         <Button ariaLabel="Sobre o app" type="button" icon onClick={() => setDialogAbout(true)}>
           <IconInfo color={layout.icon} />
@@ -206,18 +225,30 @@ function App(props: AppProps) {
         <Button ariaLabel="Github" type="button" icon onClick={() => window.open('https://github.com/leydev/Tuner', '_blank')}>
           <IconGithub color={layout.icon} />
         </Button>
-        {
-          config.theme === Theme.LIGHT
-            ? (
-              <Button ariaLabel="theme mode dark" type="button" icon onClick={() => setTheme(Theme.DARK)}>
-                <IconMoon color={layout.icon} />
-              </Button>
-            ) : (
-              <Button ariaLabel="theme mode light" type="button" icon onClick={() => setTheme(Theme.LIGHT)}>
-                <IconSun color={layout.icon} />
-              </Button>
-            )
-        }
+        <FabButton
+          ariaLabel="theme mode"
+          type="button"
+          icon
+          onClick={handleThemeMode}
+          colorIcon={layout.icon}
+          labelSelected={config.theme}
+          items={[
+            {
+              Icon: IconSun,
+              label: Theme.LIGHT,
+            },
+            {
+              Icon: IconMoon,
+              label: Theme.DARK,
+            },
+            {
+              Icon: IconMoonSun,
+              label: Theme.AUTO,
+            },
+          ]}
+        >
+          <IconSun color={layout.icon} />
+        </FabButton>
       </div>
       <div>
         <PitchDisplay onLoaded={canvasLoaded} style={{ width: '100vw', height: '30vh' }} />
