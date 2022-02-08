@@ -6,8 +6,17 @@ type ColorPalette = typeof colorPalette;
 
 function useTheme(theme: Theme) {
   const palette: ColorPalette = colorPalette;
+  let mode: Theme.DARK | Theme.LIGHT;
+
+  if (theme === Theme.AUTO) {
+    mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.DARK : Theme.LIGHT;
+  } else {
+    mode = theme;
+  }
+
   return {
-    layout: palette[theme],
+    themeMode: mode,
+    layout: palette[mode],
   };
 }
 
