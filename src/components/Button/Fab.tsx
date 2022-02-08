@@ -24,12 +24,13 @@ export interface FabProps {
   items: Options[];
   colorIcon: string;
   labelSelected?: Options['label'];
+  backgroundColor?: string;
 }
 
 export function Fab(props: PropsWithChildren<FabProps>) {
   const {
     type, color, colorText, icon, onClick, style, disabled,
-    ariaLabel, items, colorIcon, labelSelected,
+    ariaLabel, items, colorIcon, labelSelected, backgroundColor,
   } = props;
   const [dropdown, setDropdown] = useState<boolean>(false);
   const [selected, setSelected] = useState<number>(0);
@@ -69,7 +70,7 @@ export function Fab(props: PropsWithChildren<FabProps>) {
       >
         {getIconSelected().map(({ Icon }) => <Icon color={colorIcon} key="Icon-selected" />)}
       </button>
-      <div className="absolute right-0 px-3 rounded-lg" style={{ visibility: dropdown ? 'visible' : 'hidden', boxShadow: '7px 7px 12px -10px rgb(0 0 0 / 65%)' }}>
+      <div className="absolute right-0 px-3 rounded-lg" style={{ visibility: dropdown ? 'visible' : 'hidden', boxShadow: '7px 7px 12px -10px rgb(0 0 0 / 65%)', backgroundColor }}>
         {items.map(({ Icon, label }, index: number) => (
           <button key={label} className="flex py-2 options-theme" style={{ ...style }} onClick={() => handleSelected(index)}>
             <Icon color={colorIcon} />
