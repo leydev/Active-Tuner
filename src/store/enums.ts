@@ -1,6 +1,7 @@
 export enum Theme {
   DARK = 'dark',
   LIGHT = 'light',
+  AUTO = 'auto',
 }
 
 export enum ActionConfig {
