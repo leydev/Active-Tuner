@@ -16,6 +16,14 @@
   align-items: center;
 }
 
+.options-theme {
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.options-theme:last-child {
+  border-bottom: none;
+}
+
 .list > li:last-child {
   border-bottom: none;
 }
@@ -42,7 +50,7 @@
 }
 
 .about > p {
-  padding: 0 0 .5rem 0;
+  padding: 0 0 0.5rem 0;
 }
 
 .about > ul {
@@ -51,6 +59,7 @@
   padding: 0 0 1rem 2rem;
 }
 
-.about > ul > li > a:link, a:visited  {
-  color: #6A90F2;
+.about > ul > li > a:link,
+a:visited {
+  color: #6a90f2;
 }

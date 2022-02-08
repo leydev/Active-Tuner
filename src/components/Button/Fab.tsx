@@ -65,16 +65,15 @@ export function Fab(props: PropsWithChildren<FabProps>) {
         style={{
           backgroundColor: color,
           color: colorText,
-          ...style,
         }}
       >
         {getIconSelected().map(({ Icon }) => <Icon color={colorIcon} key="Icon-selected" />)}
       </button>
-      <div className="absolute right-0" style={{ visibility: dropdown ? 'visible' : 'hidden' }}>
+      <div className="absolute right-0 px-3 rounded-lg" style={{ visibility: dropdown ? 'visible' : 'hidden', boxShadow: '7px 7px 12px -10px rgb(0 0 0 / 65%)' }}>
         {items.map(({ Icon, label }, index: number) => (
-          <button key={label} className="flex" onClick={() => handleSelected(index)}>
+          <button key={label} className="flex py-2 options-theme" style={{ ...style }} onClick={() => handleSelected(index)}>
             <Icon color={colorIcon} />
-            <span>{label}</span>
+            <span className="ml-1">{label.toLocaleUpperCase()}</span>
           </button>
         ))}
       </div>

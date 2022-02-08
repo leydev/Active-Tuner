@@ -232,6 +232,7 @@ function App(props: AppProps) {
           onClick={handleThemeMode}
           colorIcon={layout.icon}
           labelSelected={config.theme}
+          style={{ borderColor: layout.list.line }}
           items={[
             {
               Icon: IconSun,
