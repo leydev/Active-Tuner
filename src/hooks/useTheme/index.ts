@@ -14,6 +14,11 @@ function useTheme(theme: Theme) {
     mode = theme;
   }
 
+  document
+    .querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', palette[mode].backgroud);
+  document
+    .querySelector('meta[name="theme-color"]').setAttribute('content', palette[mode].backgroud);
+
   return {
     themeMode: mode,
     layout: palette[mode],
