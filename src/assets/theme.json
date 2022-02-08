@@ -28,7 +28,7 @@
     "buttons": {
       "okay": {
         "color": "#D37146",
-        "textColor": "#FFFFFF"
+        "textColor": "#000000"
       }
     },
     "note": {

@@ -28,7 +28,6 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
         {
           test: /\.(css|scss)$/,
           use: [
-            'style-loader',
             {
               loader: 'url-loader',
               options: {
@@ -41,7 +40,9 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
                 esModule: false,
               },
             },
-            'css-loader', 'sass-loader', 'postcss-loader'],
+            {
+              loader: 'css-loader',
+            }, 'sass-loader', 'postcss-loader'],
           exclude: /node_modules/,
         },
         {
