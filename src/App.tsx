@@ -233,6 +233,7 @@ function App(props: AppProps) {
           colorIcon={layout.icon}
           labelSelected={config.theme}
           style={{ borderColor: layout.list.line }}
+          backgroundColor={layout.backgroud}
           items={[
             {
               Icon: IconSun,
