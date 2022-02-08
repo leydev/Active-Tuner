@@ -3,16 +3,27 @@
 
 <head>
   <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Active Tuner</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#3D3B38" />
   <meta name="apple-mobile-web-app-title" content="Active Tuner" />
-  <meta name="description" content="It is an analyser of sound waves, to aid in the tuning of musical instruments. It detects frequencies between C₀ (16,35 Hertz) and B₈  (7902,13 Hertz), and shows a musical note  that matches the recognized frequency." />
+  <meta name="description"
+    content="It is an analyser of sound waves, to aid in the tuning of musical instruments. It detects frequencies between C₀ (16,35 Hertz) and B₈  (7902,13 Hertz), and shows a musical note  that matches the recognized frequency." />
   <link rel="apple-touch-icon" href="assets/icons/icon_x512.png" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#3D3B38" />
+
+  <meta property="og:url" content="https://active-tuner.web.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Active Tuner" />
+  <meta property="og:description"
+    content="It is an analyser of sound waves, to aid in the tuning of musical instruments. It detects frequencies between C₀ (16,35 Hertz) and B₈  (7902,13 Hertz), and shows a musical note  that matches the recognized frequency." />
+  <meta property="og:image" content="https://active-tuner.web.app/assets/icons/maskable_icon_x512.png" />
+
+  <link rel="canonical" href="https://active-tuner.web.app/" />
 </head>
 
 <body>
@@ -23,15 +34,23 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(
-          registration => {
-            console.log(`Service Worker registered! Scope: ${registration.scope}`);
-          },
+        navigator.serviceWorker.register('/service-worker.js').catch(
           error => {
             console.error(`Service Worker registration failed: ${error}`);
-          },
+          }
         );
       });
+    }
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SV5DPVT0E"></script>
+  <script>
+    if (window.location.host === 'active-tuner.web.app') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-8SV5DPVT0E');
     }
   </script>
 </body>

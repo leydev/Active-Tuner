@@ -28,7 +28,6 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
         {
           test: /\.(css|scss)$/,
           use: [
-            'style-loader',
             {
               loader: 'url-loader',
               options: {
@@ -41,7 +40,9 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
                 esModule: false,
               },
             },
-            'css-loader', 'sass-loader', 'postcss-loader'],
+            {
+              loader: 'css-loader',
+            }, 'sass-loader', 'postcss-loader'],
           exclude: /node_modules/,
         },
         {
@@ -56,7 +57,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
       new CopyPlugin({
         patterns: [
           { from: 'src/manifest.json', to: 'manifest.json' },
-          { from: 'src/assets/favicon.ico', to: 'favicon.ico' },
+          { from: 'src/assets/favicon.png', to: 'favicon.png' },
           { from: 'src/assets/icons/*.png', to: 'assets/icons/[name].png' },
           { from: 'src/assets/screenshots/*.png', to: 'assets/screenshots/[name].png' },
         ],
