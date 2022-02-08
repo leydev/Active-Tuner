@@ -1,23 +1,33 @@
 import { Theme } from '@/store/enums';
 
 import colorPalette from '@/assets/theme.json';
+import { useCallback, useEffect, useState } from 'react';
 
 type ColorPalette = typeof colorPalette;
 
 function useTheme(theme: Theme) {
-  const palette: ColorPalette = colorPalette;
-  let mode: Theme.DARK | Theme.LIGHT;
+  const [palette] = useState<ColorPalette>(colorPalette);
+  // eslint-disable-next-line max-len
+  const [mode, setMode] = useState<Theme.DARK | Theme.LIGHT>(theme !== Theme.AUTO ? theme : Theme.DARK);
 
-  if (theme === Theme.AUTO) {
-    mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.DARK : Theme.LIGHT;
-  } else {
-    mode = theme;
-  }
+  const handleChangeTheme = useCallback(() => {
+    setMode(window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.DARK : Theme.LIGHT);
+  }, []);
 
-  document
-    .querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', palette[mode].backgroud);
-  document
-    .querySelector('meta[name="theme-color"]').setAttribute('content', palette[mode].backgroud);
+  useEffect(() => {
+    if (theme === Theme.AUTO) {
+      handleChangeTheme();
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', handleChangeTheme);
+    } else {
+      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', handleChangeTheme);
+      setMode(theme);
+    }
+
+    document
+      .querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', palette[mode].backgroud);
+    document
+      .querySelector('meta[name="theme-color"]').setAttribute('content', palette[mode].backgroud);
+  }, [mode, palette, handleChangeTheme, theme]);
 
   return {
     themeMode: mode,
