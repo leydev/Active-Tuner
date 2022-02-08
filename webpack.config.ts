@@ -57,6 +57,8 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
       new CopyPlugin({
         patterns: [
           { from: 'src/manifest.json', to: 'manifest.json' },
+          { from: 'src/robots.txt', to: 'robots.txt' },
+          { from: 'src/sitemap.xml', to: 'sitemap.xml' },
           { from: 'src/assets/favicon.png', to: 'favicon.png' },
           { from: 'src/assets/icons/*.png', to: 'assets/icons/[name].png' },
           { from: 'src/assets/screenshots/*.png', to: 'assets/screenshots/[name].png' },

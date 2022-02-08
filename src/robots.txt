@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://active-tuner.web.app/sitemap.xml
