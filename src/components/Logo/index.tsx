@@ -13,8 +13,8 @@ function Logo(props: PropsWithChildren<LogoProps>) {
   return (
     <div className="fixed top-4 left-4">
       {theme === Theme.DARK
-        ? (<img src={logoDark} width="80px" alt="Active Tuner" />)
-        : (<img src={logoLight} width="80px" alt="Active Tuner" />)}
+        ? (<img src={logoDark} width="80" height="60" alt="Active Tuner" />)
+        : (<img src={logoLight} width="80" height="60" alt="Active Tuner" />)}
     </div>
   );
 }

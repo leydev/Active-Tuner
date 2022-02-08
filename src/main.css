@@ -4,7 +4,8 @@
 
 @font-face { 
   font-family: roboto; 
-  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf'); 
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
+  font-display: swap;
 } 
 
 * {
