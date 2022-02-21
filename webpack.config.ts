@@ -58,6 +58,7 @@ function configuration(_env: unknown, argv: { mode: string }): Configuration {
         patterns: [
           { from: 'src/manifest.json', to: 'manifest.json' },
           { from: 'src/robots.txt', to: 'robots.txt' },
+          { from: 'src/googleaa8fa35ff5becd4c.html', to: 'googleaa8fa35ff5becd4c.html' },
           { from: 'src/sitemap.xml', to: 'sitemap.xml' },
           { from: 'src/assets/favicon.png', to: 'favicon.png' },
           { from: 'src/assets/icons/*.png', to: 'assets/icons/[name].png' },
